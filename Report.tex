@@ -55,13 +55,19 @@ Insert terms here
 \end{IEEEkeywords}
 
 \section{Literature Review}
-After reading through current papers that have also had intentions to create an algorithm to assign sentiment to tweets we have discovered the following.
+There are many current studies that have also had intentions to create an algorithm to assign sentiment to tweets.  
+From these studies, the following has been discovered.
 Assigning sentiment should be split up into three categories, positive, neutral, and negative.
+This separation of tweets has been used in several sentiment analysis studies.
+For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in wich there algorithm "establishes whether a particulartweet is supportive, critical, or neutral\cite{b9}."
 Emotion can also be assigned to tweets, these being split up into sections of anger, sadness, joy, fear, and disgust. 
+In a study by Benrouba, and Boudour, IBM's natural language understanding API tool was used to analyze words associated with positive, negative and neutral emotions\cite{b8}.
+This tools assings values between 0 and 1 for emotions mentioned above per word. 
+From here tweets were analyzed to calculate distance to these baseline words in an unsupervised fashion in order to identify the sentiment behind it. 
 As well, there was implemenations of this algorithm that focussed on desiphering the sentiment or emotion of a tweet on an individual scale or on a more mass tweet scale.
 The analysis in bulk was done mainly to understand how the public was percieving a certain topic of interest online. 
 Whereas the individual assessment was more focussed on understanding how one person felt in general based on the sentiment behind their tweets. 
-Through analyzing existing papers we have created some pros and some cons with exisiting methodologies. \newline
+Through analyzing existing papers some pros and cons with exisiting methodologies were established. \newline
 \newline
 Pros: 
 \begin{itemize}
@@ -70,10 +76,25 @@ Pros:
 \end{itemize}
 Cons:
 \begin{itemize}
-    \item Only have found one study in which unsupervised algoirthms were tested in this context.
+    \item Much fewer studies in which unsupervised algoirthms were tested in this context.
     \item There is a lot of overlap between neurtal, and positive and negative key words making it harder to determine sentiment.
-    \item 
 \end{itemize}
+
+As mentioned above, Taking an SVM approach was one of the most accurate in terms of supervised algorithms.
+It out performed other algorithms of Sentiment Analysis accross multiple examined studies. 
+An SVM works by indentifying "a hyperplane that distinguishably segregates the data points of differnt classes \cite{b13}." 
+What this means is the data is expanded onto a multidimensional plane that is split up by the hyperplane. 
+The hyperplane will have margins that expand to the size of the closest datapoint to it that falls immediately after the hyplane centre. 
+This makes decision making faster and more effiecient. 
+As well, with modfications this strategy has been used to not only cover binary data but through using a method called a "kernel trick\cite{b13}" it is used on multidimensional data as well. 
+Using this technique achieved very impressive accuracy levels on sentiment analysis of tweets according to other studies.
+For example, in the study by Kavitha, Prasad Reddy, and Venkata Rao, it was observed that "SA [Sentiment Analysis] using SVM classifiers is varying between 90.1 and 94.8\%\cite{11}."
+As well, in the study by Susmitha, Nikhul, Akhil, Kavitha, Reddy, and Shailaja, SVM had an accuracy percentage of 82\%\cite{b12}. 
+Despite the success of this algorithm with studies seeing accuracy levels in the 90th percentile there is still a gap in knowledge on how an unsupervised algorithm would keep up.
+A newer unsupervised algorithm that has burst onto the scene is BERT.\newline 
+\newline
+BERT
+
 
 
 \section{Proposed Methodology}
