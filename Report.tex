@@ -59,9 +59,9 @@ There are many current studies that have also had intentions to create an algori
 From these studies, the following has been discovered.
 Assigning sentiment should be split up into three categories, positive, neutral, and negative.
 This separation of tweets has been used in several sentiment analysis studies.
-For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in wich there algorithm "establishes whether a particulartweet is supportive, critical, or neutral\cite{b9}."
+For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in wich there algorithm "establishes whether a particulartweet is supportive, critical, or neutral\cite{b2}."
 Emotion can also be assigned to tweets, these being split up into sections of anger, sadness, joy, fear, and disgust. 
-In a study by Benrouba, and Boudour, IBM's natural language understanding API tool was used to analyze words associated with positive, negative and neutral emotions\cite{b8}.
+In a study by Benrouba, and Boudour, IBM's natural language understanding API tool was used to analyze words associated with positive, negative and neutral emotions\cite{b1}.
 This tools assings values between 0 and 1 for emotions mentioned above per word. 
 From here tweets were analyzed to calculate distance to these baseline words in an unsupervised fashion in order to identify the sentiment behind it. 
 As well, there was implemenations of this algorithm that focussed on desiphering the sentiment or emotion of a tweet on an individual scale or on a more mass tweet scale.
@@ -82,18 +82,45 @@ Cons:
 
 As mentioned above, Taking an SVM approach was one of the most accurate in terms of supervised algorithms.
 It out performed other algorithms of Sentiment Analysis accross multiple examined studies. 
-An SVM works by indentifying "a hyperplane that distinguishably segregates the data points of differnt classes \cite{b13}." 
+An SVM works by indentifying "a hyperplane that distinguishably segregates the data points of differnt classes \cite{b6}." 
 What this means is the data is expanded onto a multidimensional plane that is split up by the hyperplane. 
 The hyperplane will have margins that expand to the size of the closest datapoint to it that falls immediately after the hyplane centre. 
 This makes decision making faster and more effiecient. 
-As well, with modfications this strategy has been used to not only cover binary data but through using a method called a "kernel trick\cite{b13}" it is used on multidimensional data as well. 
+As well, with modfications this strategy has been used to not only cover binary data but through using a method called a "kernel trick\cite{b6}" it is used on multidimensional data as well. 
 Using this technique achieved very impressive accuracy levels on sentiment analysis of tweets according to other studies.
 For example, in the study by Kavitha, Prasad Reddy, and Venkata Rao, it was observed that "SA [Sentiment Analysis] using SVM classifiers is varying between 90.1 and 94.8\%\cite{11}."
-As well, in the study by Susmitha, Nikhul, Akhil, Kavitha, Reddy, and Shailaja, SVM had an accuracy percentage of 82\%\cite{b12}. 
-Despite the success of this algorithm with studies seeing accuracy levels in the 90th percentile there is still a gap in knowledge on how an unsupervised algorithm would keep up.
-A newer unsupervised algorithm that has burst onto the scene is BERT.\newline 
-\newline
-BERT
+As well, in the study by Susmitha, Nikhul, Akhil, Kavitha, Reddy, and Shailaja, SVM had an accuracy percentage of 82\%\cite{b5}. 
+Despite the success of this algorithm with studies seeing accuracy levels in the 90th percentile there is still a much smaller amount of knowledge on how a new style of algorithm would keep up.
+A newer "self-supervised\cite{b7}" algorithm that has burst onto the scene is BERT.\newline 
+
+BERT is an example of a self-supervised model. 
+What this means is that it uses the data input to train on like a supervised algorithm however the training of the algorithm is done in an unsupervised fashion.
+"The unsupervised problem is transformed into a supervised problem by auto-generating the labels\cite{b9}" for the supervised algorithm.
+Analysis of study performed by Ionut-Alexandru and Stelian a hybrid of a "BERT and SVM Ensemble Model\cite{b8}" was used to detect emotions.
+From this study they found very accurate results from combining the power of BERT and SVM with accuiracies in the 90th percentile.
+From their results, the overall accuracy for their ensemble was 91\% \cite{b8}.
+However their resulsts for BERT were 89\% \cite{b8}, which is very comparible to that of their ensemble.
+These results can be seen in Figure 1.
+This leads to the possibility of with different training and potentially more specific topics on tweets better results for BERTweet.
+
+\begin{figure}[b]
+    \centerline{\includegraphics[width=0.5\textwidth]{BERTweetChartFromStudy.png}}
+    \caption{Results from Study from Ionut-Alexandru and Stelian\cite{b8}}
+\end{figure}
+
+While these results are impressive the visualization of the results was not available other than through these tables.
+In mentioned above by Samah, Jailani, Hamzah, Aminuddin, Abidin, and Ria, more time was spent on displaying the data to users nicely.
+Several different types of charts including pie charts, bar graphs, and histograms were used to clearly visualize the data.
+This makes understanding the algorithms decision on what the public feels on a certain topic much easier to understand compare to numbers in a chart.
+An example of these charts can be seen in Figure 2.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{BetterVisualizationsOfData.png}
+    \caption{Example of visualization of data from study\cite{b2}}
+\end{figure*}
+
+
 
 
 
@@ -315,20 +342,15 @@ For papers published in translation journals, please give the English
 citation first, followed by the original foreign-language citation \cite{b6}.
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
-\bibitem{b8} \url{https://link.springer.com/article/10.1007/s13278-022-01000-9}
-\bibitem{b9} \url{https://semarakilmu.com.my/journals/index.php/applied_sciences_eng_tech/article/view/3281/3455}
-\bibitem{b10} \url{https://ojs.wiserpub.com/index.php/CCDS/article/view/1827}
-\bibitem{b11} \url{https://link.springer.com/chapter/10.1007/978-981-19-8865-3_12}
-\bibitem{b12} \url{https://ieeexplore.ieee.org/abstract/document/10084278?casa_token=GlPE_azfZjoAAAAA:Uk5ZcMsTMxXDFkBargYNGNlRHcoa9OyNy9uMpXBAo3gc70oD59nl6fnJw4J_Bts1-pUa8mO_}
-\bibitem{b13} \url{https://www.spiceworks.com/tech/big-data/articles/what-is-support-vector-machine/#:~:text=A%20support%20vector%20machine%20(SVM)%20is%20a%20machine%20learning%20algorithm,classes%2C%20labels%2C%20or%20outputs.}
-
+\bibitem{b1} \url{https://link.springer.com/article/10.1007/s13278-022-01000-9}
+\bibitem{b2} \url{https://semarakilmu.com.my/journals/index.php/applied_sciences_eng_tech/article/view/3281/3455}
+\bibitem{b3} \url{https://ojs.wiserpub.com/index.php/CCDS/article/view/1827}
+\bibitem{b4} \url{https://link.springer.com/chapter/10.1007/978-981-19-8865-3_12}
+\bibitem{b5} \url{https://ieeexplore.ieee.org/abstract/document/10084278?casa_token=GlPE_azfZjoAAAAA:Uk5ZcMsTMxXDFkBargYNGNlRHcoa9OyNy9uMpXBAo3gc70oD59nl6fnJw4J_Bts1-pUa8mO_}
+\bibitem{b6} \url{https://www.spiceworks.com/tech/big-data/articles/what-is-support-vector-machine/#:~:text=A%20support%20vector%20machine%20(SVM)%20is%20a%20machine%20learning%20algorithm,classes%2C%20labels%2C%20or%20outputs.}
+\bibitem{b7} \url{https://www.projectpro.io/article/bert-nlp-model-explained/558}
+\bibitem{b8} \url{https://arxiv.org/pdf/2208.04547.pdf}
+\bibitem{b9} \url{https://neptune.ai/blog/self-supervised-learning#:~:text=Self%2Dsupervised%20learning%20is%20a,as%20predictive%20or%20pretext%20learning.}
 \end{thebibliography}
 \vspace{12pt}
 \color{red}
