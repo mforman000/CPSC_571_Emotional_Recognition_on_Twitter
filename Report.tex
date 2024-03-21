@@ -86,6 +86,10 @@ An SVM works by indentifying "a hyperplane that distinguishably segregates the d
 What this means is the data is expanded onto a multidimensional plane that is split up by the hyperplane. 
 The hyperplane will have margins that expand to the size of the closest datapoint to it that falls immediately after the hyplane centre. 
 This makes decision making faster and more effiecient. 
+\begin{figure}[t]
+    \centerline{\includegraphics[width=0.5\textwidth]{SVMVisualization.png}}
+    \caption{Visualization of hyperplane from SVM \cite{b6}.}
+\end{figure}
 As well, with modfications this strategy has been used to not only cover binary data but through using a method called a "kernel trick\cite{b6}" it is used on multidimensional data as well. 
 Using this technique achieved very impressive accuracy levels on sentiment analysis of tweets according to other studies.
 For example, in the study by Kavitha, Prasad Reddy, and Venkata Rao, it was observed that "SA [Sentiment Analysis] using SVM classifiers is varying between 90.1 and 94.8\%\cite{11}."
@@ -100,7 +104,7 @@ Analysis of study performed by Ionut-Alexandru and Stelian a hybrid of a "BERT a
 From this study they found very accurate results from combining the power of BERT and SVM with accuiracies in the 90th percentile.
 From their results, the overall accuracy for their ensemble was 91\% \cite{b8}.
 However their resulsts for BERT were 89\% \cite{b8}, which is very comparible to that of their ensemble.
-These results can be seen in Figure 1.
+These results can be seen in Figure 2.
 This leads to the possibility of with different training and potentially more specific topics on tweets better results for BERTweet.
 
 \begin{figure}[b]
@@ -112,7 +116,9 @@ While these results are impressive the visualization of the results was not avai
 In mentioned above by Samah, Jailani, Hamzah, Aminuddin, Abidin, and Ria, more time was spent on displaying the data to users nicely.
 Several different types of charts including pie charts, bar graphs, and histograms were used to clearly visualize the data.
 This makes understanding the algorithms decision on what the public feels on a certain topic much easier to understand compare to numbers in a chart.
-An example of these charts can be seen in Figure 2.
+An example of these charts can be seen in Figure 3. 
+As well, in a study by Harshit D. Bhavani, they also created a web application to visualize the data\cite{b3}. 
+However, both of these models have never used BERT or any other self-supervised algorithms with these visualizations.
 
 \begin{figure*}[t]
     \centering
