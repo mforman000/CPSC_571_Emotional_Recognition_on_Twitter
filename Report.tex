@@ -133,17 +133,63 @@ However, both of these models have never used BERT or any other self-supervised 
 \section{Proposed Methodology}
 We will describe in detail what we plan to do for our implementation. 
 
-\section{Dataset}
-We will be giving an detailed desciption of our dataset
+\section{Datasets Description}
+This section provides a detailed overview of two key datasets used in our analysis: the Swiggy Tweet dataset and the Twitter US Airline Sentiment dataset. Each dataset is unique in its focus and offers valuable insights into customer sentiment in different sectors.
+
+\subsection{Swiggy Tweet Dataset}
 \begin{itemize}
-    \item Description
-    \item Weblinks
-    \item Type of Data
-    \item Statistics
+    \item \textbf{Description}: The Swiggy Tweet dataset aggregates tweets about Swiggy, a prominent Indian online food delivery service. It includes 16,712 tweets with metrics such as date, favorite and retweet counts, followers, and friends counts, along with the tweet's text. This dataset is instrumental for sentiment analysis, tracking customer service responses, and evaluating Swiggy's social media engagement.
+    
+    \item \textbf{Weblinks}: \url{https://www.kaggle.com/datasets/cpluzshrijayan/swiggy-tweet}[10]
+    
+    \item \textbf{Type of Data}: It comprises mainly textual data from tweets, numerical data from engagement metrics, and categorical data from user IDs and screen names.
+    
+    \item \textbf{Statistics}:
+    \begin{itemize}
+        \item \textit{Number of Instances}: The dataset comprises 16,712 tweets, offering a robust foundation for sentiment analysis and trend identification.
+        \item \textit{Number of Columns}: 10 columns provide varied data points including engagement metrics, user demographics, and textual content for in-depth analyses.
+        \item \textit{Unique Tweets}: Out of 16,712 tweets, 16,703 are unique, indicating an almost negligible level of repetition and emphasizing the originality of the dataset.
+        \item \textit{Unique Users}: 8,539 distinct users have contributed to the dataset, reflecting a wide demographic and varied opinions.
+        \item \textit{Engagement Metrics}: The average favorites count per tweet is about 0.55, while the average retweet count stands at 0.14, highlighting the level of user interaction and engagement with the content.
+    \end{itemize}
 \end{itemize}
 
-\section{Implementaion Requirements}
-Here we will be describing what tools we will need to implement the full stack experience
+\subsection{Twitter US Airline Sentiment Dataset}
+\begin{itemize}
+    \item \textbf{Description}: The Twitter US Airline Sentiment dataset is composed of tweets aimed at US airlines, tagged with sentiments to enable a detailed sentiment analysis. With 14,640 instances, the dataset records sentiments as negative, neutral, or positive, alongside the reasons for negative sentiments, offering a comprehensive look into public opinion on airline services.
+    
+    \item \textbf{Weblinks}: \url{https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment/data}[11]
+    
+    \item \textbf{Type of Data}: This dataset is primarily textual, with tweets labeled for sentiment analysis. It includes numerical data for sentiment confidence levels and retweet counts, and categorical data on airlines and reasons for negative feedback.
+    
+    \item \textbf{Statistics}:
+    \begin{itemize}
+        \item \textit{Number of Instances}: With 14,640 tweets, this dataset is a substantial corpus for analyzing public sentiment towards US airlines.
+        \item \textit{Number of Columns}: The dataset is detailed across 15 columns, encompassing tweet IDs, sentiment analysis, reasons for negative sentiments, and user engagement statistics, thereby facilitating a comprehensive evaluation of airline services.
+        \item \textit{Unique Tweets}: There are 14,427 unique tweets, ensuring the dataset's diversity and reducing bias from duplicate entries.
+        \item \textit{Average Retweet Count}: An average retweet count of approximately 0.083 per tweet indicates the social sharing dynamic and reach of these customer experiences.
+        \item \textit{Sentiment Distribution}: The breakdown of sentiments as 9,178 negative, 3,099 neutral, and 2,363 positive, underscores the prevalence of negative sentiment in the dataset.
+    \end{itemize}
+    The statistical insights provided above were derived using the pandas library,open-source software library written for data analysis in Python[12].
+
+\end{itemize}
+
+
+\section{Implementation Requirements}
+In this section, we outline the essential tools and technologies required to implement our full-stack web application. Our project aims to leverage state-of-the-art sentiment analysis techniques to offer insightful data visualizations and analytics through an interactive web interface. The following tech stacks and libraries are critical for the development and operationalization of our application:
+
+\begin{itemize}
+    \item \textbf{Python}: As the primary programming language, Python's versatility and rich ecosystem of libraries form the backbone of our application. It enables the integration of various data processing, machine learning, and web development frameworks seamlessly.
+    
+    \item \textbf{Django Framework}: Django, a high-level Python web framework, is chosen for its robustness, scalability, and ease of integration with Python's data science and machine learning libraries. It facilitates the rapid development of secure and maintainable web applications, providing out-of-the-box support for common web development tasks.
+    
+    \item \textbf{BERTweet}: For sentiment analysis, we will be utilizing BERTweet, a BERT-based model specifically trained on English tweets. Its state-of-the-art performance on tweet sentiment classification makes it an ideal choice for analyzing and extracting sentiments from tweet datasets relevant to our project scope[13].
+    
+    \item \textbf{Additional Tools and Libraries}: For handling data manipulation and analysis, libraries such as Pandas and NumPy will be employed. Visualization libraries like Matplotlib and Seaborn will be used to create interactive data visualizations, enhancing the user experience on our web platform.
+\end{itemize}
+
+The combination of these technologies and frameworks will enable the development of a comprehensive web application that leverages advanced sentiment analysis to provide valuable insights into various datasets, thereby meeting our project objectives.
+
 
 \section{Ease of Use}
 
@@ -342,15 +388,19 @@ For papers published in translation journals, please give the English
 citation first, followed by the original foreign-language citation \cite{b6}.
 
 \begin{thebibliography}{00}
-\bibitem{b1} \url{https://link.springer.com/article/10.1007/s13278-022-01000-9}
-\bibitem{b2} \url{https://semarakilmu.com.my/journals/index.php/applied_sciences_eng_tech/article/view/3281/3455}
-\bibitem{b3} \url{https://ojs.wiserpub.com/index.php/CCDS/article/view/1827}
-\bibitem{b4} \url{https://link.springer.com/chapter/10.1007/978-981-19-8865-3_12}
-\bibitem{b5} \url{https://ieeexplore.ieee.org/abstract/document/10084278?casa_token=GlPE_azfZjoAAAAA:Uk5ZcMsTMxXDFkBargYNGNlRHcoa9OyNy9uMpXBAo3gc70oD59nl6fnJw4J_Bts1-pUa8mO_}
-\bibitem{b6} \url{https://www.spiceworks.com/tech/big-data/articles/what-is-support-vector-machine/#:~:text=A%20support%20vector%20machine%20(SVM)%20is%20a%20machine%20learning%20algorithm,classes%2C%20labels%2C%20or%20outputs.}
-\bibitem{b7} \url{https://www.projectpro.io/article/bert-nlp-model-explained/558}
-\bibitem{b8} \url{https://arxiv.org/pdf/2208.04547.pdf}
-\bibitem{b9} \url{https://neptune.ai/blog/self-supervised-learning#:~:text=Self%2Dsupervised%20learning%20is%20a,as%20predictive%20or%20pretext%20learning.}
+\bibitem{b1} F. Benrouba and R. Boudour, "Emotional sentiment analysis of social media content for Mental Health Safety," Social Network Analysis and Mining, vol. 13, no. 1, 2023. \url{doi:10.1007/s13278-022-01000-9}
+\bibitem{b2} A. F. A. Samah et al., "Aspect-Based Classification and Visualization of Twitter Sentiment Analysis Towards Online Food Delivery Services in Malaysia," View of aspect-based classification and visualization of Twitter sentiment analysis towards online food delivery services in Malaysia, 2024. [Online]. Available: \url{https://doi.org/10.37934/araset.37.1.139150} [Accessed: Mar. 23, 2024]
+\bibitem{b3} Bhavnani, H.D. (2022) Developing an emotion recognition tool for tweets, Cloud Computing and Data Science. Available at: \url{https://doi.org/10.37256/ccds.4120231827} (Accessed: 23 March 2024). 
+\bibitem{b4} Kavitha, D.N., Prasad Reddy, P.V. and Venkata Rao, K. (2023) ‘Emotion recognition in tweets using optimized SVM and Knn Classifiers’, Lecture Notes in Electrical Engineering, pp. 135–144. \url{doi:10.1007/978-981-19-8865-3_12}
+\bibitem{b5}Susmitha, C. et al. (2023) Sentimental Analysis on Twitter Data using Supervised Algorithms, Request rejected. Available at: \url{doi:10.1109/ICCMC56507.2023.10084278} (Accessed: 23 March 2024).
+\bibitem{b6} Kanade, V. (2022) All you need to know about support vector machines, Spiceworks. Available at: \url{https://www.spiceworks.com/tech/big-data/articles/what-is-support-vector-machine/#:~:text=A%20support%20vector%20machine%20(SVM)%20is%20a%20machine%20learning%20algorithm,classes%2C%20labels%2C%20or%20outputs.}
+\bibitem{b7} ProjectPro (2023) Bert NLP model explained for complete beginners, ProjectPro. Available at: \url{https://www.projectpro.io/article/bert-nlp-model-explained/558} (Accessed: 23 March 2024)
+\bibitem{b8} ALBU, I.-A. and SPÎNU, S. (2022) EMOTION DETECTION FROM TWEETS USING A BERT AND SVM ENSEMBLE MODEL, VAPOR LIQUID. Available at: \url{https://arxiv.org/ftp/arxiv/papers/2208/2208.04547.pdf} (Accessed: 2024). 
+\bibitem{b9} Shah, D. and Jha, A. (2023) Self-supervised learning and its applications, neptune.ai. Available at: \url{https://neptune.ai/blog/self-supervised-learning#:~:text=Self%2Dsupervised%20learning%20is%20a,as%20predictive%20or%20pretext%20learning.}(Accessed: 23 March 2024). 
+\bibitem{b10} Shrijayan (2022) Sentimental analysis, Kaggle. Available at: \url{ https://www.kaggle.com/datasets/cpluzshrijayan/swiggy-tweet} (Accessed: 23 March 2024).  
+\bibitem{b11} Eight, F. (2019) Twitter us airline sentiment, Kaggle. Available at: \url{https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment} (Accessed: 23 March 2024). 
+\bibitem{b12} Lewis, H. (2020) Getting started with pandas in Python, Getting Started with pandas in Python | UVA Library. Available at: \url{https://library.virginia.edu/data/articles/getting-started-with-pandas-in-python} (Accessed: 23 March 2024). 
+\bibitem{b13} Quoc Nguyen , D.Q.N.,  Vu, T. and Tuan Nguyen., A. (2020) Bertweet, BERTweet. Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/bertweet} (Accessed: 24 March 2024). 
 \end{thebibliography}
 \vspace{12pt}
 \color{red}
