@@ -131,7 +131,54 @@ However, both of these models have never used BERT or any other self-supervised 
 
 
 \section{Proposed Methodology}
-We will describe in detail what we plan to do for our implementation. 
+\subsection{Data Collection}
+Currently, our methodology is in an experimental phase and therefore, subject to change as we continue to test different methods. To implement our methodology using the BERTweet model we have to carry out the following steps. We start with the data collection step. Currently we are using labelled datasets from Kaggle which is described below for the purpose of understanding the accuracy of our model. Once accuracy is established, we may utilize the Twitter API for additional data. We are currently working with the Twitter US Airline Sentiment Dataset and the Swiggy dataset both which are very different in terms of the content. Our goal is to see how well our model could perform with tweets of different topics. 
+
+\subsection{Data Preprocessing}
+The next step is to process the data. In the preprocessing step, we use the pandas library to filter out the columns which are not necessary.  In addition, we will use the tweet-preprocessor library to process tweets and remove any unnecessary parts of the tweet which includes hash symbols, mentions, emojis, etc. This is important so that our model can focus solely on the textual information presented. 
+
+\subsection{Finetuning}
+Our next step is to finetune our model. We are using the BERT model for this purpose. BERT stands for Bidirectional Encoder Representations from Transformers. It is a deep learning model which was introduced by Google in 2018. This model makes use of a transformer which contains an attention mechanism. This allows the model to understand contextual relations between words in a text. The BERTweet model is based off of this BERT but is pretrained on a large corpus of tweets, making it suitable for our task. We believe this is the appropriate model to use because we intend to test the ability of unsupervised models in this particular case and BERTweet is an effective model for this task
+
+
+\subsection{Classification}
+Using our finetuned model, we then classify our tweets based on positive, negative or neutral sentiment to allow us to determine sentiment on a particular issue.  We will then aggregate all the predictions to get an overall view of the public sentiment given a particular dataset. We could do this by calculating the average sentiment score across all the tweets. 
+
+\subsection{Visualization}
+The next step is to visualize our data. As we have not yet obtained our results, we are currently planning to use bar graphs to show number of tweets with each sentiment. Firstly, we are planning to use a word cloud which specifies all the key words indicating positive, negative, and neutral sentiment. An example of this can be shown below.
+
+
+
+
+    \begin{centering}
+    \includegraphics[width=0.5\textwidth]{wordcloud.png}
+    \caption{Example of word cloud}\cite{b2}
+
+
+\end{centering}
+
+
+ We also plan on including a bar graph showing the distribution of positive, negative and neutral tweets. We will also add additional visualizations which we plan to show in the next step which is evaluating performance. 
+
+
+
+\subsection{Evaluation of Performance}
+Evaluating the performance of our model involves a few metrics which need to be calculated. Prior to performing our calculations, we will display a confusion matrix which shows, true positives, true negatives, false positives, and false negatives in a matrix. An example in python is shown below:
+
+
+    \begin{centering}
+    \includegraphics[width=0.5 \textwidth]{confusion_matrix.png}
+    \caption{Example of confusion matrix in python}
+    
+The confusion matrix will be used to calculate multiple metrics including accuracy, performance, recall, and F1 score, the equations of which are as follows:
+\end{centering}
+
+\begin{align}
+    Accuracy &= (TP + TN) / (TP + TN + FP + FN)\\
+    F1 &= 2TP / (2TP + FP + FN)\\
+    Precision &= TP / (TP + FP)\\
+    Recall &= TP / (TP + FN)
+\end{align}
 
 \section{Datasets Description}
 This section provides a detailed overview of two key datasets used in our analysis: the Swiggy Tweet dataset and the Twitter US Airline Sentiment dataset. Each dataset is unique in its focus and offers valuable insights into customer sentiment in different sectors.
