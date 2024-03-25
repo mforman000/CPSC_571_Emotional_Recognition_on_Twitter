@@ -71,13 +71,14 @@ Through analyzing existing papers some pros and cons with exisiting methodologie
 \newline
 Pros: 
 \begin{itemize}
-    \item Already established accuracy levels of some existing machine learning algorithms for predicting tweet sentiment.
     \item Proven accuracy of SVM (Support Vector Machine) algoirthm.
+    \item Proven accuracy of BERTweet Self-supervised Algorithm.
 \end{itemize}
 Cons:
 \begin{itemize}
     \item Much fewer studies in which unsupervised algoirthms were tested in this context.
     \item There is a lot of overlap between neurtal, and positive and negative key words making it harder to determine sentiment.
+    \item Very little in the way of good visualizations for the output of the algorithms.
 \end{itemize}
 
 As mentioned above, Taking an SVM approach was one of the most accurate in terms of supervised algorithms.
@@ -132,36 +133,62 @@ However, both of these models have never used BERT or any other self-supervised 
 
 \section{Proposed Methodology}
 \subsection{Data Collection}
-Currently, our methodology is in an experimental phase and therefore, subject to change as we continue to test different methods. To implement our methodology using the BERTweet model we have to carry out the following steps. We start with the data collection step. Currently we are using labelled datasets from Kaggle which is described below for the purpose of understanding the accuracy of our model. Once accuracy is established, we may utilize the Twitter API for additional data. We are currently working with the Twitter US Airline Sentiment Dataset and the Swiggy dataset both which are very different in terms of the content. Our goal is to see how well our model could perform with tweets of different topics. 
+Currently, our methodology is in an experimental phase and therefore, subject to change as we continue to test different methods. 
+To implement our methodology using the BERTweet model we have to carry out the following steps. 
+We start with the data collection step. 
+Currently we are using labelled datasets from Kaggle which is described below for the purpose of understanding the accuracy of our model. 
+Once accuracy is established, we may utilize the Twitter API for additional data. 
+We are currently working with the Twitter US Airline Sentiment Dataset and the Swiggy dataset both which are very different in terms of the content. 
+Our goal is to see how well our model could perform with tweets of different topics. 
 
 \subsection{Data Preprocessing}
-The next step is to process the data. In the preprocessing step, we use the pandas library to filter out the columns which are not necessary.  In addition, we will use the tweet-preprocessor library to process tweets and remove any unnecessary parts of the tweet which includes hash symbols, mentions, emojis, etc. This is important so that our model can focus solely on the textual information presented. 
+The next step is to process the data. 
+In the preprocessing step, we use the pandas library to filter out the columns which are not necessary.  
+In addition, we will use the tweet-preprocessor library to process tweets and remove any unnecessary parts of the tweet which includes hash symbols, mentions, emojis, etc. 
+This is important so that our model can focus solely on the textual information presented. 
 
 \subsection{Finetuning}
-Our next step is to finetune our model. We are using the BERT model for this purpose. BERT stands for Bidirectional Encoder Representations from Transformers. It is a deep learning model which was introduced by Google in 2018. This model makes use of a transformer which contains an attention mechanism. This allows the model to understand contextual relations between words in a text. The BERTweet model is based off of this BERT but is pretrained on a large corpus of tweets, making it suitable for our task. We believe this is the appropriate model to use because we intend to test the ability of unsupervised models in this particular case and BERTweet is an effective model for this task
+Our next step is to finetune our model. 
+We are using the BERT model for this purpose. 
+BERT stands for Bidirectional Encoder Representations from Transformers. 
+It is a deep learning model which was introduced by Google in 2018. 
+This model makes use of a transformer which contains an attention mechanism. 
+This allows the model to understand contextual relations between words in a text. 
+The BERTweet model is based off of this BERT but is pretrained on a large corpus of tweets, making it suitable for our task. 
+We believe this is the appropriate model to use because we intend to test the ability of unsupervised models in this particular case and BERTweet is an effective model for this task.
 
 
 \subsection{Classification}
-Using our finetuned model, we then classify our tweets based on positive, negative or neutral sentiment to allow us to determine sentiment on a particular issue.  We will then aggregate all the predictions to get an overall view of the public sentiment given a particular dataset. We could do this by calculating the average sentiment score across all the tweets. 
+Using our finetuned model, we then classify our tweets based on positive, negative or neutral sentiment to allow us to determine sentiment on a particular issue.  
+We will then aggregate all the predictions to get an overall view of the public sentiment given a particular dataset. 
+We could do this by calculating the average sentiment score across all the tweets. 
 
 \subsection{Visualization}
-The next step is to visualize our data. As we have not yet obtained our results, we are currently planning to use bar graphs to show number of tweets with each sentiment. Firstly, we are planning to use a word cloud which specifies all the key words indicating positive, negative, and neutral sentiment. An example of this can be shown below.
-
-
-
+The next step is to visualize our data. 
+As we have not yet obtained our results, we are currently planning to use bar graphs to show number of tweets with each sentiment. 
+Firstly, we are planning to use a word cloud which specifies all the key words indicating positive, negative, and neutral sentiment. 
+An example of this can be shown above.
 
 \begin{figure}[t]
     \includegraphics[width=0.5\textwidth]{wordcloud.png}
     \caption{Example of word cloud\cite{b2}}
 \end{figure}
 
+ We also plan on including a bar graph showing the distribution of positive, negative and neutral tweets. 
+ We will also add additional visualizations which we plan to show in the next step which is evaluating performance.
+ In order to display this information to the user we will be implementing a web application using the Django Framework in python. 
+ "Django is a high-level Python web framework that encourages rapid development \cite{b14}."
+ Given our shorter time frame, we believe that this framerwork will be able to give us the best product within the fastest timeframe.
+ This is due to the fact that Django is consistent in their design principles and have lots of up-to-date documentation \cite{b15}. 
 
- We also plan on including a bar graph showing the distribution of positive, negative and neutral tweets. We will also add additional visualizations which we plan to show in the next step which is evaluating performance. 
+
 
 
 
 \subsection{Evaluation of Performance}
-Evaluating the performance of our model involves a few metrics which need to be calculated. Prior to performing our calculations, we will display a confusion matrix which shows, true positives, true negatives, false positives, and false negatives in a matrix. An example in python is shown below:
+Evaluating the performance of our model involves a few metrics which need to be calculated. 
+Prior to performing our calculations, we will display a confusion matrix which shows, true positives, true negatives, false positives, and false negatives in a matrix. 
+An example in python is shown below:
 
 
 \begin{figure}[b]
@@ -178,7 +205,8 @@ The confusion matrix will be used to calculate multiple metrics including accura
 \end{align}
 
 \section{Datasets Description}
-This section provides a detailed overview of two key datasets used in our analysis: the Swiggy Tweet dataset and the Twitter US Airline Sentiment dataset. Each dataset is unique in its focus and offers valuable insights into customer sentiment in different sectors.
+This section provides a detailed overview of two key datasets used in our analysis: the Swiggy Tweet dataset and the Twitter US Airline Sentiment dataset. 
+Each dataset is unique in its focus and offers valuable insights into customer sentiment in different sectors.
 
 \subsection{Swiggy Tweet Dataset}
 \begin{itemize}
@@ -234,7 +262,6 @@ In this section, we outline the essential tools and technologies required to imp
 
 The combination of these technologies and frameworks will enable the development of a comprehensive web application that leverages advanced sentiment analysis to provide valuable insights into various datasets, thereby meeting our project objectives.
 
-\section*{References}
 \begin{thebibliography}{00}
 \bibitem{b1} F. Benrouba and R. Boudour, "Emotional sentiment analysis of social media content for Mental Health Safety," Social Network Analysis and Mining, vol. 13, no. 1, 2023. \url{doi:10.1007/s13278-022-01000-9}
 \bibitem{b2} A. F. A. Samah et al., "Aspect-Based Classification and Visualization of Twitter Sentiment Analysis Towards Online Food Delivery Services in Malaysia," View of aspect-based classification and visualization of Twitter sentiment analysis towards online food delivery services in Malaysia, 2024. [Online]. Available: \url{https://doi.org/10.37934/araset.37.1.139150} [Accessed: Mar. 23, 2024]
@@ -249,6 +276,8 @@ The combination of these technologies and frameworks will enable the development
 \bibitem{b11} Eight, F. (2019) Twitter us airline sentiment, Kaggle. Available at: \url{https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment} (Accessed: 23 March 2024). 
 \bibitem{b12} Lewis, H. (2020) Getting started with pandas in Python, Getting Started with pandas in Python | UVA Library. Available at: \url{https://library.virginia.edu/data/articles/getting-started-with-pandas-in-python} (Accessed: 23 March 2024). 
 \bibitem{b13} Quoc Nguyen , D.Q.N.,  Vu, T. and Tuan Nguyen., A. (2020) Bertweet, BERTweet. Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/bertweet} (Accessed: 24 March 2024). 
+\bibitem{b14} Django Software Foundation, (2024) Django: The Web framework for perfectionists with deadlines, Available at: \url{https://www.djangoproject.com} (Accessed: 25 March 2024)
+\bibitem{b15} Mozilla Contributors, (2024) Introduction to Django, Available at: \url{https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction} (Accessed: 25 March 2024)
 \end{thebibliography}
 \vspace{12pt}
 \end{document}
