@@ -39,14 +39,14 @@ rohan.chaudhary@ucalgary.ca}
 
 \begin{abstract}
 This report is going to cover the implemenation of an algoirthm that is used to determine the sentiment and emotion behind a given tweet.
-We will discuss the pros and cons of existing methods and how a hybrid of these existing methods could create a more accurate result.
+We will discuss the pros and cons of existing methods and how a hybrid of these existing methods could create a more usable result.
 Social media is a space which is utilized to express many sentiments and emotions. 
 In many real world applications, it is important to identify these emotions efficiently and as accurately as possible. 
 The ability to identify and predict emotional tone and public perception of various issues can be useful in many scenarios. 
 For example, being able to differentiate between sarcasm and a person being serious on twitter can be difficult at times. 
 With accurate emotional recognition algorithms, one may be able to understand when something is sarcasm vs when it is not and avoid some of the stress and anger a post may instill otherwise. 
 As well, there is incentive from large corporations and governments to understand how the public is perceiving a new product or service. 
-With this new knowledge products and services could theoretically be changed to help positively effecrt the most amount of people. 
+With this new knowledge, products and services could theoretically be changed to help positively effect the most amount of people. 
 
 \end{abstract}
 
@@ -59,12 +59,12 @@ There are many current studies that have also had intentions to create an algori
 From these studies, the following has been discovered.
 Assigning sentiment should be split up into three categories, positive, neutral, and negative.
 This separation of tweets has been used in several sentiment analysis studies.
-For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in wich there algorithm "establishes whether a particulartweet is supportive, critical, or neutral\cite{b2}."
+For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in wich there algorithm "establishes whether a particular tweet is supportive, critical, or neutral\cite{b2}."
 Emotion can also be assigned to tweets, these being split up into sections of anger, sadness, joy, fear, and disgust. 
 In a study by Benrouba, and Boudour, IBM's natural language understanding API tool was used to analyze words associated with positive, negative and neutral emotions\cite{b1}.
-This tools assings values between 0 and 1 for emotions mentioned above per word. 
-From here tweets were analyzed to calculate distance to these baseline words in an unsupervised fashion in order to identify the sentiment behind it. 
-As well, there was implemenations of this algorithm that focussed on desiphering the sentiment or emotion of a tweet on an individual scale or on a more mass tweet scale.
+This tools assigns values between 0 and 1 for emotions mentioned above per word. 
+From here, tweets were analyzed to calculate distance to these baseline words in an unsupervised fashion in order to identify the sentiment behind it. 
+As well, there was implemenations of this algorithm that focussed on desiphering the sentiment or emotion of a tweet on an individual scale, or on a more mass tweet scale.
 The analysis in bulk was done mainly to understand how the public was percieving a certain topic of interest online. 
 Whereas the individual assessment was more focussed on understanding how one person felt in general based on the sentiment behind their tweets. 
 Through analyzing existing papers some pros and cons with exisiting methodologies were established. \newline
@@ -91,7 +91,7 @@ This makes decision making faster and more effiecient.
     \centerline{\includegraphics[width=0.5\textwidth]{SVMVisualization.png}}
     \caption{Visualization of hyperplane from SVM \cite{b6}.}
 \end{figure}
-As well, with modfications this strategy has been used to not only cover binary data but through using a method called a "kernel trick\cite{b6}" it is used on multidimensional data as well. 
+With modfications this strategy has been used not only to cover binary data, but through using a method called a "kernel trick\cite{b6}" it is used on multidimensional data as well. 
 Using this technique achieved very impressive accuracy levels on sentiment analysis of tweets according to other studies.
 For example, in the study by Kavitha, Prasad Reddy, and Venkata Rao, it was observed that "SA [Sentiment Analysis] using SVM classifiers is varying between 90.1 and 94.8\%\cite{11}."
 As well, in the study by Susmitha, Nikhul, Akhil, Kavitha, Reddy, and Shailaja, SVM had an accuracy percentage of 82\%\cite{b5}. 
@@ -101,7 +101,7 @@ A newer "self-supervised\cite{b7}" algorithm that has burst onto the scene is BE
 BERT is an example of a self-supervised model. 
 What this means is that it uses the data input to train on like a supervised algorithm however the training of the algorithm is done in an unsupervised fashion.
 "The unsupervised problem is transformed into a supervised problem by auto-generating the labels\cite{b9}" for the supervised algorithm.
-Analysis of study performed by Ionut-Alexandru and Stelian a hybrid of a "BERT and SVM Ensemble Model\cite{b8}" was used to detect emotions.
+In a study performed by Ionut-Alexandru and Stelian a hybrid of a "BERT and SVM Ensemble Model\cite{b8}" was used to detect emotions.
 From this study they found very accurate results from combining the power of BERT and SVM with accuiracies in the 90th percentile.
 From their results, the overall accuracy for their ensemble was 91\% \cite{b8}.
 However their resulsts for BERT were 89\% \cite{b8}, which is very comparible to that of their ensemble.
@@ -113,13 +113,14 @@ This leads to the possibility of with different training and potentially more sp
     \caption{Results from Study from Ionut-Alexandru and Stelian\cite{b8}}
 \end{figure}
 
-While these results are impressive the visualization of the results was not available other than through these tables.
-In mentioned above by Samah, Jailani, Hamzah, Aminuddin, Abidin, and Ria, more time was spent on displaying the data to users nicely.
+While these results are impressive, proper visualizations of the results were not available other than in the format of these tables.
+In a study mentioned above by Samah, Jailani, Hamzah, Aminuddin, Abidin, and Ria, more time was spent on displaying the data to users nicely.
 Several different types of charts including pie charts, bar graphs, and histograms were used to clearly visualize the data.
-This makes understanding the algorithms decision on what the public feels on a certain topic much easier to understand compare to numbers in a chart.
+This makes understanding the algorithms decision on what the public feels on a certain topic much easier compared to numbers in a chart.
 An example of these charts can be seen in Figure 3. 
 As well, in a study by Harshit D. Bhavani, they also created a web application to visualize the data\cite{b3}. 
 However, both of these models have never used BERT or any other self-supervised algorithms with these visualizations.
+This leaves a gap in the existing studies of nciely presented data using algorithms with superior accuracy, that may be able to be filled. 
 
 \begin{figure*}[t]
     \centering
