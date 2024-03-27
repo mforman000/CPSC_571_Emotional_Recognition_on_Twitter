@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emotional Recognition of Tweets</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/styles.css">
 </head>
 <body>
@@ -19,5 +20,28 @@
         </select>
         <button type="submit">Submit</button>
     </form>
+    <canvas id="pie-chart"></canvas>
+
+    <script>
+        fetch('/pie_chart_data/')
+            .then(response => response.json())
+            .then(data => {
+                var ctx = document.getElementById('pie-chart').getContext('2d');
+                var myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            data: data.data,
+                            backgroundColor: [
+                                'red',
+                                'green',
+                                'blue'
+                            ]
+                        }]
+                    }
+                });
+            });
+    </script>
 </body>
 </html>
