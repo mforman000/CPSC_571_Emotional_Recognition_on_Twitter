@@ -19,5 +19,7 @@ from django.urls import path
 from TweetRecognitionApp import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('pie_chart_data/', views.pie_chart_data, name='pie_chart_data'),
 ]

@@ -4,18 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emotional Recognition of Tweets</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/styles.css">
 </head>
 <body>
     <h1>CPSC 571 Term Project - Emotional Recognition on Twitter</h1>
     <p>Group 14: Matthew Forman, Firoz Lakhani, Rohan Chaudhary</p>
     <h2>Select a Topic:</h2>
-    <select id="topics">
-        <option value="airlines">Airlines</option>
-        <option value="disasters">Disasters</option>
-        <option value="optionC">optionC</option>
-        <option value="optionD">optionD</option>
-    </select>
-    <button>Select</button>
+    <form method="POST">
+        {% csrf_token %}
+        <select name="topic" >
+            {% for topic in topics %}
+            <option value="{{ topic.id }}">{{ topic.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <canvas id="pie-chart"></canvas>
+
+    <script>
+        fetch('/pie_chart_data/')
+            .then(response => response.json())
+            .then(data => {
+                var ctx = document.getElementById('pie-chart').getContext('2d');
+                var myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            data: data.data,
+                            backgroundColor: [
+                                'red',
+                                'green',
+                                'blue'
+                            ]
+                        }]
+                    }
+                });
+            });
+    </script>
 </body>
 </html>
