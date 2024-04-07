@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emotional Recognition of Tweets</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
 </head>
@@ -14,40 +15,57 @@
         <p>Group 14: Matthew Forman, Firoz Lakhani, Rohan Chaudhary</p>
     </div>
     <div class="dropdown-label">Select a Topic</div>
-    <form method="POST">
         {% csrf_token %}
-        <select name="topic" class="topic-dropdown">
+        <select id="topics" name="topic" class="topic-dropdown">
             {% for topic in topics %}
-            <option value="{{ topic.id }}">{{ topic.name }}</option>
+            <option value="{{ topic }}">{{ topic }}</option>
             {% endfor %}
         </select>
-        <button type="submit" class="submit-dropdown">Submit</button>
-    </form>
     
     <div class="canvas-container">
         <canvas id="pie-chart"></canvas>
     </div>
 
     <script>
-        fetch('/pie_chart_data/')
-            .then(response => response.json())
-            .then(data => {
-                var ctx = document.getElementById('pie-chart').getContext('2d');
-                var myPieChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: data.labels,
-                        datasets: [{
-                            data: data.data,
-                            backgroundColor: [
-                                'red',
-                                'green',
-                                'blue'
-                            ]
-                        }]
+        $(document).ready(function(){
+            console.log("readyFunctiton");
+            $('#topics').change(function(){
+                console.log("change occured");
+                var topic = $(this).val();
+                console.log("topic: " + topic);
+                $.ajax({
+                    url : '{% url "pie_chart_data" %}',
+                    data: {'topic' : topic},
+                    dataType: 'json',
+                    success : function(data){
+                        console.log("Success")
+                        renderPieChart(data);
                     }
                 });
             });
+        });
+
+        function renderPieChart(data){
+            console.log(data);
+            var ctx = document.getElementById('pie-chart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                    }]
+                }
+            });
+        }
     </script>
 </body>
 </html>
