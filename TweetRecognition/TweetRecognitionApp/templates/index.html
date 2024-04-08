@@ -44,11 +44,15 @@
                 });
             });
         });
+        var myChart;
 
         function renderPieChart(data){
             console.log(data);
             var ctx = document.getElementById('pie-chart').getContext('2d');
-            var myChart = new Chart(ctx, {
+            if (myChart) {
+                myChart.destroy();
+            }
+            myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
                     labels: data.labels,
