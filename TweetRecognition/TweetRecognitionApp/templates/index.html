@@ -26,6 +26,12 @@
         <canvas id="pie-chart"></canvas>
     </div>
 
+    <div class="canvas-container">
+        <img id="wordcloud-positive" src="{{ positiveWordcloud }}" alt="Word Cloud">
+        <img id="wordcloud-negative" src="{{ negativeWordcloud }}" alt="Word Cloud">
+        <img id="wordcloud-neutral" src="{{ neutralWordcloud }}" alt="Word Cloud">
+    </div>
+
     <script>
         $(document).ready(function(){
             console.log("readyFunctiton");
@@ -42,6 +48,18 @@
                         renderPieChart(data);
                     }
                 });
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "regenerate_wordcloud" %}',
+                    data: {'topic' : topic},
+                    dataType: 'json',
+                    success: function(data){
+                        $('#wordcloud-positive').attr('src', data.positiveWordcloud);
+                        $('#wordcloud-negative').attr('src', data.negativeWordcloud);
+                        $('#wordcloud-neutral').attr('src', data.neutralWordcloud);
+
+                    }
+                })
             });
         });
         var myChart;
