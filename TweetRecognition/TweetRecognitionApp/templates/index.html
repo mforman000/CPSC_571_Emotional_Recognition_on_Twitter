@@ -36,27 +36,27 @@
         <table>
             <tr>
                 <th></th>
-                <th>Predicted 0</th>
-                <th>Predicted 1</th>
-                <th>Predicted 2</th>
+                <th>Predicted Negative</th>
+                <th>Predicted Neutral</th>
+                <th>Predicted Positive</th>
                 <th>Accuracy</th>
             </tr>
             <tr>
-                <th>Actual 0</th>
+                <th>Actual Negative</th>
                 <td id="confusion_matrix_00">{{ confusion_matrix.0.0 }}</td>
                 <td id="confusion_matrix_01">{{ confusion_matrix.0.1 }}</td>
                 <td id="confusion_matrix_02">{{ confusion_matrix.0.2 }}</td>
                 <td id="confusion_matrix_0accuracy">{{ accuracy_0 }}</td>
             </tr>
             <tr>
-                <th>Actual 1</th>
+                <th>Actual Neutral</th>
                 <td id="confusion_matrix_10">{{ confusion_matrix.1.0}}</td>
                 <td id="confusion_matrix_11">{{ confusion_matrix.1.1 }}</td>
                 <td id="confusion_matrix_12">{{ confusion_matrix.1.2 }}</td>
                 <td id="confusion_matrix_1accuracy">{{ accuracy_1 }}</td>
             </tr>
             <tr>
-                <th>Actual 2</th>
+                <th>Actual Positive</th>
                 <td id="confusion_matrix_20">{{ confusion_matrix.2.0 }}</td>
                 <td id="confusion_matrix_21">{{ confusion_matrix.2.1 }}</td>
                 <td id="confusion_matrix_22">{{ confusion_matrix.2.2 }}</td>

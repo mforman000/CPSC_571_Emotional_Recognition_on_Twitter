@@ -65,7 +65,7 @@ def pie_chart_data(request):
     data_objects = Topic.objects.filter(topic = topic)
     valuesList = [data.value for data in data_objects]
     data = {
-        'labels' : ["positive", "Negative", "Neutral"],
+        'labels' : ["Negative", "Neutral", "Positive"],
         'data' : valuesList[0]
     }
     return(JsonResponse(data))
