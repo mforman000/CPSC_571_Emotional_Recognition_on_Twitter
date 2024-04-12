@@ -31,10 +31,52 @@
         <img id="wordcloud-negative" src="{{ negativeWordcloud }}" alt="Word Cloud">
         <img id="wordcloud-neutral" src="{{ neutralWordcloud }}" alt="Word Cloud">
     </div>
+    
+    <div class="canvas-container">
+        <table>
+            <tr>
+                <th></th>
+                <th>Predicted 0</th>
+                <th>Predicted 1</th>
+                <th>Predicted 2</th>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <th>Actual 0</th>
+                <td id="confusion_matrix_00">{{ confusion_matrix.0.0 }}</td>
+                <td id="confusion_matrix_01">{{ confusion_matrix.0.1 }}</td>
+                <td id="confusion_matrix_02">{{ confusion_matrix.0.2 }}</td>
+                <td id="confusion_matrix_0accuracy">{{ accuracy_0 }}</td>
+            </tr>
+            <tr>
+                <th>Actual 1</th>
+                <td id="confusion_matrix_10">{{ confusion_matrix.1.0}}</td>
+                <td id="confusion_matrix_11">{{ confusion_matrix.1.1 }}</td>
+                <td id="confusion_matrix_12">{{ confusion_matrix.1.2 }}</td>
+                <td id="confusion_matrix_1accuracy">{{ accuracy_1 }}</td>
+            </tr>
+            <tr>
+                <th>Actual 2</th>
+                <td id="confusion_matrix_20">{{ confusion_matrix.2.0 }}</td>
+                <td id="confusion_matrix_21">{{ confusion_matrix.2.1 }}</td>
+                <td id="confusion_matrix_22">{{ confusion_matrix.2.2 }}</td>
+                <td id="confusion_matrix_2accuracy">{{ accuracy_2 }}</td>
+            </tr>
+        </table>
+    </div>
 
     <script>
         $(document).ready(function(){
             console.log("readyFunctiton");
+            $.ajax({
+                    url : '{% url "pie_chart_data" %}',
+                    data: {'topic' : 'Airlines'},
+                    dataType: 'json',
+                    success : function(data){
+                        console.log("Success")
+                        renderPieChart(data);
+                    }
+                });
             $('#topics').change(function(){
                 console.log("change occured");
                 var topic = $(this).val();
@@ -57,6 +99,30 @@
                         $('#wordcloud-positive').attr('src', data.positiveWordcloud);
                         $('#wordcloud-negative').attr('src', data.negativeWordcloud);
                         $('#wordcloud-neutral').attr('src', data.neutralWordcloud);
+
+                    }
+                })
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "regenerate_confusion_matrix" %}',
+                    data: {'topic' : topic},
+                    dataType: 'json',
+                    success: function(data){
+                        console.log(data)
+                        $('#confusion_matrix_00').text(data.confusion_matrix_data[0][0]);
+                        $('#confusion_matrix_01').text(data.confusion_matrix_data[0][1]);
+                        $('#confusion_matrix_02').text(data.confusion_matrix_data[0][2]);
+                        $('#confusion_matrix_10').text(data.confusion_matrix_data[1][0]);
+                        $('#confusion_matrix_11').text(data.confusion_matrix_data[1][1]);
+                        $('#confusion_matrix_12').text(data.confusion_matrix_data[1][2]);
+                        $('#confusion_matrix_20').text(data.confusion_matrix_data[2][0]);
+                        $('#confusion_matrix_21').text(data.confusion_matrix_data[2][1]);
+                        $('#confusion_matrix_22').text(data.confusion_matrix_data[2][2]);
+
+                        $('#confusion_matrix_0accuracy').text(data.accuracy_0);
+                        $('#confusion_matrix_1accuracy').text(data.accuracy_1);
+                        $('#confusion_matrix_2accuracy').text(data.accuracy_2);
+
 
                     }
                 })

@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('pie_chart_data/', views.pie_chart_data, name='pie_chart_data'),
     path('regenerate_wordcloud/', views.regenerate_wordcloud, name='regenerate_wordcloud'),
+    path('regenerate_confusion_matrix/', views.regenerate_confusion_matrix, name='regenerate_confusion_matrix'),
 ]

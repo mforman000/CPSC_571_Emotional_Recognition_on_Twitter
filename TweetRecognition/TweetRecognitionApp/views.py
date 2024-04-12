@@ -7,6 +7,8 @@ from django.http import JsonResponse
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from io import BytesIO
+from sklearn.metrics import confusion_matrix
+import numpy as np
 import base64
 
 
@@ -17,8 +19,15 @@ def index(request):
     topics = Topic.objects.values_list('topic', flat=True).distinct()
     initial_data['topics'] = topics
 
+    
+
     topic = request.GET.get('topic')
     data_objects = Topic.objects.filter(topic = 'Airlines')
+
+    actual_data_list = data_objects.values_list('actual_data', flat=True)
+    predicted_data_list = data_objects.values_list('predicted_data', flat=True)
+
+    confusion_matrix_data = generate_confusion_matrix(actual_data_list[0], predicted_data_list[0]).tolist()
 
     positiveWordList = data_objects.values_list('positiveWords', flat=True)
     if (not positiveWordList):
@@ -44,6 +53,10 @@ def index(request):
     initial_data['positiveWordcloud'] = generate_wordcloud(positive_word_freq)
     initial_data['negativeWordcloud'] = generate_wordcloud(negative_word_freq)
     initial_data['neutralWordcloud'] = generate_wordcloud(neutral_word_freq)
+    initial_data['confusion_matrix'] = confusion_matrix_data
+    initial_data['accuracy_0'] = str(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100) + "%"
+    initial_data['accuracy_1'] = str(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100) + "%"
+    initial_data['accuracy_2'] = str(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100) + "%"
 
     return render(request, 'index.html', initial_data)
 
@@ -102,27 +115,22 @@ def regenerate_wordcloud(request):
                          'neutralWordcloud': generate_wordcloud(neutral_word_freq)}
     return(JsonResponse(word_cloud_data))
 
+def regenerate_confusion_matrix(request):
+    cm_data = {}
+    topic = request.GET.get('topic')
+    data_objects = Topic.objects.filter(topic = topic)
 
+    actual_data_list = data_objects.values_list('actual_data', flat=True)
+    predicted_data_list = data_objects.values_list('predicted_data', flat=True)
 
-# def wordcloud_view(request):
-#     topic = request.GET.get('topic')
-#     data_objects = Topic.objects.filter(topic = topic)
-#     # wordList = [data.positiveWords for data in data_objects]
-#     wordList = ["this", "is", "the", "word", "list"]
-#     word_freq = {word: wordList.count(word) for word in set(wordList)}
-    
-#     wordCloud = WordCloud(width = 800, height = 400,).generate_from_frequencies(word_freq)
+    confusion_matrix_data = generate_confusion_matrix(actual_data_list[0], predicted_data_list[0]).tolist()
+    cm_data['confusion_matrix_data'] = confusion_matrix_data
+    cm_data['accuracy_0'] = str(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100) + "%"
+    cm_data['accuracy_1'] = str(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100) + "%"
+    cm_data['accuracy_2'] = str(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100) + "%"
+    return(JsonResponse(cm_data, safe=False))
 
-#     plt.figure(figsize=(8,4))
-#     plt.imshow(wordCloud, interpolation='bilinear')
-#     plt.axis('off')
-#     plt.tight_layout()
+def generate_confusion_matrix(y_actual, y_pred):
 
-#     buffer = BytesIO()
-#     plt.savefig(buffer, format='png')
-#     buffer.seek(0)
-#     image_png = buffer.getValue()
-#     buffer.close()
-#     img_str = "data:image/png;base64," + base64.b64encode(image_png).decode()
-
-#     return render(request, 'index.html', {'wordcloud': img_str})
+    c_matrix = confusion_matrix(y_actual, y_pred)
+    return c_matrix
