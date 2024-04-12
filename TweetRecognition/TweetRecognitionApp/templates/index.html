@@ -23,7 +23,12 @@
         </select>
     
     <div class="canvas-container">
-        <canvas id="pie-chart"></canvas>
+        <h2>BerTweet</h2>
+        <canvas id="solo_bert_pie_chart"></canvas>
+        <h2>BerTweet Embeddings + SVM</h2>
+        <canvas id="svm_bert_pie_chart"></canvas>
+        <h2>Bag of Words Embeddings + SVM</h2>
+        <canvas id="svm_bow_pie_chart"></canvas>
     </div>
 
     <div class="canvas-container">
@@ -33,6 +38,7 @@
     </div>
     
     <div class="canvas-container">
+        <h2>BerTweet</h2>
         <table>
             <tr>
                 <th></th>
@@ -43,24 +49,86 @@
             </tr>
             <tr>
                 <th>Actual Negative</th>
-                <td id="confusion_matrix_00">{{ confusion_matrix.0.0 }}</td>
-                <td id="confusion_matrix_01">{{ confusion_matrix.0.1 }}</td>
-                <td id="confusion_matrix_02">{{ confusion_matrix.0.2 }}</td>
-                <td id="confusion_matrix_0accuracy">{{ accuracy_0 }}</td>
+                <td id="solo_bert_confusion_matrix_00">{{ solo_bert_confusion_matrix.0.0 }}</td>
+                <td id="solo_bert_confusion_matrix_01">{{ solo_bert_confusion_matrix.0.1 }}</td>
+                <td id="solo_bert_confusion_matrix_02">{{ solo_bert_confusion_matrix.0.2 }}</td>
+                <td id="solo_bert_confusion_matrix_0accuracy">{{ solo_bert_accuracy_0 }}</td>
             </tr>
             <tr>
                 <th>Actual Neutral</th>
-                <td id="confusion_matrix_10">{{ confusion_matrix.1.0}}</td>
-                <td id="confusion_matrix_11">{{ confusion_matrix.1.1 }}</td>
-                <td id="confusion_matrix_12">{{ confusion_matrix.1.2 }}</td>
-                <td id="confusion_matrix_1accuracy">{{ accuracy_1 }}</td>
+                <td id="solo_bert_confusion_matrix_10">{{ solo_bert_confusion_matrix.1.0}}</td>
+                <td id="solo_bert_confusion_matrix_11">{{ solo_bert_confusion_matrix.1.1 }}</td>
+                <td id="solo_bert_confusion_matrix_12">{{ solo_bert_confusion_matrix.1.2 }}</td>
+                <td id="solo_bert_confusion_matrix_1accuracy">{{ solo_bert_accuracy_1 }}</td>
             </tr>
             <tr>
                 <th>Actual Positive</th>
-                <td id="confusion_matrix_20">{{ confusion_matrix.2.0 }}</td>
-                <td id="confusion_matrix_21">{{ confusion_matrix.2.1 }}</td>
-                <td id="confusion_matrix_22">{{ confusion_matrix.2.2 }}</td>
-                <td id="confusion_matrix_2accuracy">{{ accuracy_2 }}</td>
+                <td id="solo_bert_confusion_matrix_20">{{ solo_bert_confusion_matrix.2.0 }}</td>
+                <td id="solo_bert_confusion_matrix_21">{{ solo_bert_confusion_matrix.2.1 }}</td>
+                <td id="solo_bert_confusion_matrix_22">{{ solo_bert_confusion_matrix.2.2 }}</td>
+                <td id="solo_bert_confusion_matrix_2accuracy">{{ solo_bert_accuracy_2 }}</td>
+            </tr>
+        </table>
+        <h2>BerTweet Embeddings + SVM</h2>
+        <table>
+            <tr>
+                <th></th>
+                <th>Predicted Negative</th>
+                <th>Predicted Neutral</th>
+                <th>Predicted Positive</th>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <th>Actual Negative</th>
+                <td id="svm_bert_confusion_matrix_00">{{ svm_bert_confusion_matrix.0.0 }}</td>
+                <td id="svm_bert_confusion_matrix_01">{{ svm_bert_confusion_matrix.0.1 }}</td>
+                <td id="svm_bert_confusion_matrix_02">{{ svm_bert_confusion_matrix.0.2 }}</td>
+                <td id="svm_bert_confusion_matrix_0accuracy">{{ svm_bert_accuracy_0 }}</td>
+            </tr>
+            <tr>
+                <th>Actual Neutral</th>
+                <td id="svm_bert_confusion_matrix_10">{{ svm_bert_confusion_matrix.1.0}}</td>
+                <td id="svm_bert_confusion_matrix_11">{{ svm_bert_confusion_matrix.1.1 }}</td>
+                <td id="svm_bert_confusion_matrix_12">{{ svm_bert_confusion_matrix.1.2 }}</td>
+                <td id="svm_bert_confusion_matrix_1accuracy">{{ svm_bert_accuracy_1 }}</td>
+            </tr>
+            <tr>
+                <th>Actual Positive</th>
+                <td id="svm_bert_confusion_matrix_20">{{ svm_bert_confusion_matrix.2.0 }}</td>
+                <td id="svm_bert_confusion_matrix_21">{{ svm_bert_confusion_matrix.2.1 }}</td>
+                <td id="svm_bert_confusion_matrix_22">{{ svm_bert_confusion_matrix.2.2 }}</td>
+                <td id="svm_bert_confusion_matrix_2accuracy">{{ svm_bert_accuracy_2 }}</td>
+            </tr>
+        </table>
+        <h2>Bag of Words Embeddings + SVM</h2>
+        <table>
+            <tr>
+                <th></th>
+                <th>Predicted Negative</th>
+                <th>Predicted Neutral</th>
+                <th>Predicted Positive</th>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <th>Actual Negative</th>
+                <td id="svm_bow_confusion_matrix_00">{{ svm_bow_confusion_matrix.0.0 }}</td>
+                <td id="svm_bow_confusion_matrix_01">{{ svm_bow_confusion_matrix.0.1 }}</td>
+                <td id="svm_bow_confusion_matrix_02">{{ svm_bow_confusion_matrix.0.2 }}</td>
+                <td id="svm_bow_confusion_matrix_0accuracy">{{ svm_bow_accuracy_0 }}</td>
+            </tr>
+            <tr>
+                <th>Actual Neutral</th>
+                <td id="svm_bow_confusion_matrix_10">{{ svm_bow_confusion_matrix.1.0}}</td>
+                <td id="svm_bow_confusion_matrix_11">{{ svm_bow_confusion_matrix.1.1 }}</td>
+                <td id="svm_bow_confusion_matrix_12">{{ svm_bow_confusion_matrix.1.2 }}</td>
+                <td id="svm_bow_confusion_matrix_1accuracy">{{ svm_bow_accuracy_1 }}</td>
+            </tr>
+            <tr>
+                <th>Actual Positive</th>
+                <td id="svm_bow_confusion_matrix_20">{{ svm_bow_confusion_matrix.2.0 }}</td>
+                <td id="svm_bow_confusion_matrix_21">{{ svm_bow_confusion_matrix.2.1 }}</td>
+                <td id="svm_bow_confusion_matrix_22">{{ svm_bow_confusion_matrix.2.2 }}</td>
+                <td id="svm_bow_confusion_matrix_2accuracy">{{ svm_bow_accuracy_2 }}</td>
             </tr>
         </table>
     </div>
@@ -109,39 +177,114 @@
                     dataType: 'json',
                     success: function(data){
                         console.log(data)
-                        $('#confusion_matrix_00').text(data.confusion_matrix_data[0][0]);
-                        $('#confusion_matrix_01').text(data.confusion_matrix_data[0][1]);
-                        $('#confusion_matrix_02').text(data.confusion_matrix_data[0][2]);
-                        $('#confusion_matrix_10').text(data.confusion_matrix_data[1][0]);
-                        $('#confusion_matrix_11').text(data.confusion_matrix_data[1][1]);
-                        $('#confusion_matrix_12').text(data.confusion_matrix_data[1][2]);
-                        $('#confusion_matrix_20').text(data.confusion_matrix_data[2][0]);
-                        $('#confusion_matrix_21').text(data.confusion_matrix_data[2][1]);
-                        $('#confusion_matrix_22').text(data.confusion_matrix_data[2][2]);
+                        $('#solo_bert_confusion_matrix_00').text(data.solo_bert_confusion_matrix_data[0][0]);
+                        $('#solo_bert_confusion_matrix_01').text(data.solo_bert_confusion_matrix_data[0][1]);
+                        $('#solo_bert_confusion_matrix_02').text(data.solo_bert_confusion_matrix_data[0][2]);
+                        $('#solo_bert_confusion_matrix_10').text(data.solo_bert_confusion_matrix_data[1][0]);
+                        $('#solo_bert_confusion_matrix_11').text(data.solo_bert_confusion_matrix_data[1][1]);
+                        $('#solo_bert_confusion_matrix_12').text(data.solo_bert_confusion_matrix_data[1][2]);
+                        $('#solo_bert_confusion_matrix_20').text(data.solo_bert_confusion_matrix_data[2][0]);
+                        $('#solo_bert_confusion_matrix_21').text(data.solo_bert_confusion_matrix_data[2][1]);
+                        $('#solo_bert_confusion_matrix_22').text(data.solo_bert_confusion_matrix_data[2][2]);
 
-                        $('#confusion_matrix_0accuracy').text(data.accuracy_0);
-                        $('#confusion_matrix_1accuracy').text(data.accuracy_1);
-                        $('#confusion_matrix_2accuracy').text(data.accuracy_2);
+                        $('#solo_bert_confusion_matrix_0accuracy').text(data.solo_bert_accuracy_0);
+                        $('#solo_bert_confusion_matrix_1accuracy').text(data.solo_bert_accuracy_1);
+                        $('#solo_bert_confusion_matrix_2accuracy').text(data.solo_bert_accuracy_2);
+
+                        $('#svm_bert_confusion_matrix_00').text(data.svm_bert_confusion_matrix_data[0][0]);
+                        $('#svm_bert_confusion_matrix_01').text(data.svm_bert_confusion_matrix_data[0][1]);
+                        $('#svm_bert_confusion_matrix_02').text(data.svm_bert_confusion_matrix_data[0][2]);
+                        $('#svm_bert_confusion_matrix_10').text(data.svm_bert_confusion_matrix_data[1][0]);
+                        $('#svm_bert_confusion_matrix_11').text(data.svm_bert_confusion_matrix_data[1][1]);
+                        $('#svm_bert_confusion_matrix_12').text(data.svm_bert_confusion_matrix_data[1][2]);
+                        $('#svm_bert_confusion_matrix_20').text(data.svm_bert_confusion_matrix_data[2][0]);
+                        $('#svm_bert_confusion_matrix_21').text(data.svm_bert_confusion_matrix_data[2][1]);
+                        $('#svm_bert_confusion_matrix_22').text(data.svm_bert_confusion_matrix_data[2][2]);
+
+                        $('#svm_bert_confusion_matrix_0accuracy').text(data.svm_bert_accuracy_0);
+                        $('#svm_bert_confusion_matrix_1accuracy').text(data.svm_bert_accuracy_1);
+                        $('#svm_bert_confusion_matrix_2accuracy').text(data.svm_bert_accuracy_2);
+
+                        $('#svm_bow_confusion_matrix_00').text(data.svm_bow_confusion_matrix_data[0][0]);
+                        $('#svm_bow_confusion_matrix_01').text(data.svm_bow_confusion_matrix_data[0][1]);
+                        $('#svm_bow_confusion_matrix_02').text(data.svm_bow_confusion_matrix_data[0][2]);
+                        $('#svm_bow_confusion_matrix_10').text(data.svm_bow_confusion_matrix_data[1][0]);
+                        $('#svm_bow_confusion_matrix_11').text(data.svm_bow_confusion_matrix_data[1][1]);
+                        $('#svm_bow_confusion_matrix_12').text(data.svm_bow_confusion_matrix_data[1][2]);
+                        $('#svm_bow_confusion_matrix_20').text(data.svm_bow_confusion_matrix_data[2][0]);
+                        $('#svm_bow_confusion_matrix_21').text(data.svm_bow_confusion_matrix_data[2][1]);
+                        $('#svm_bow_confusion_matrix_22').text(data.svm_bow_confusion_matrix_data[2][2]);
+
+                        $('#svm_bow_confusion_matrix_0accuracy').text(data.svm_bow_accuracy_0);
+                        $('#svm_bow_confusion_matrix_1accuracy').text(data.svm_bow_accuracy_1);
+                        $('#svm_bow_confusion_matrix_2accuracy').text(data.svm_bow_accuracy_2);
 
 
+
+
+                    
                     }
                 })
             });
         });
-        var myChart;
+        var solo_bert_chart;
+        var svm_bert_chart;
+        var svm_bow_chart;
 
         function renderPieChart(data){
             console.log(data);
-            var ctx = document.getElementById('pie-chart').getContext('2d');
-            if (myChart) {
-                myChart.destroy();
+            var solo_bert_ctx = document.getElementById('solo_bert_pie_chart').getContext('2d');
+            if (solo_bert_chart) {
+                solo_bert_chart.destroy();
             }
-            myChart = new Chart(ctx, {
+            solo_bert_chart = new Chart(solo_bert_ctx, {
                 type: 'pie',
                 data: {
                     labels: data.labels,
                     datasets: [{
-                        data: data.data,
+                        data: data.solo_bert_data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                    }]
+                }
+            });
+            var svm_bert_ctx = document.getElementById('svm_bert_pie_chart').getContext('2d');
+            if (svm_bert_chart) {
+                svm_bert_chart.destroy();
+            }
+            svm_bert_chart = new Chart(svm_bert_ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.svm_bert_data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                    }]
+                }
+            });
+            var svm_bow_ctx = document.getElementById('svm_bow_pie_chart').getContext('2d');
+            if (svm_bow_chart) {
+                svm_bow_chart.destroy();
+            }
+            svm_bow_chart = new Chart(svm_bow_ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.svm_bow_data,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.7)',
                             'rgba(54, 162, 235, 0.7)',

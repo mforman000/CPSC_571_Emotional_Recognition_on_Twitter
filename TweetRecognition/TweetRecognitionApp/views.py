@@ -24,10 +24,20 @@ def index(request):
     topic = request.GET.get('topic')
     data_objects = Topic.objects.filter(topic = 'Airlines')
 
-    actual_data_list = data_objects.values_list('actual_data', flat=True)
-    predicted_data_list = data_objects.values_list('predicted_data', flat=True)
+    solo_bert_actual_data_list = data_objects.values_list('solo_bert_actual_data', flat=True)
+    solo_bert_predicted_data_list = data_objects.values_list('solo_bert_predicted_data', flat=True)
 
-    confusion_matrix_data = generate_confusion_matrix(actual_data_list[0], predicted_data_list[0]).tolist()
+    solo_bert_confusion_matrix_data = generate_confusion_matrix(solo_bert_actual_data_list[0], solo_bert_predicted_data_list[0]).tolist()
+
+    svm_bert_actual_data_list = data_objects.values_list('svm_bert_actual_data', flat=True)
+    svm_bert_predicted_data_list = data_objects.values_list('svm_bert_predicted_data', flat=True)
+
+    svm_bert_confusion_matrix_data = generate_confusion_matrix(svm_bert_actual_data_list[0], svm_bert_predicted_data_list[0]).tolist()
+
+    svm_bow_actual_data_list = data_objects.values_list('svm_bow_actual_data', flat=True)
+    svm_bow_predicted_data_list = data_objects.values_list('svm_bow_predicted_data', flat=True)
+
+    svm_bow_confusion_matrix_data = generate_confusion_matrix(svm_bow_actual_data_list[0], svm_bow_predicted_data_list[0]).tolist()
 
     positiveWordList = data_objects.values_list('positiveWords', flat=True)
     if (not positiveWordList):
@@ -53,20 +63,37 @@ def index(request):
     initial_data['positiveWordcloud'] = generate_wordcloud(positive_word_freq)
     initial_data['negativeWordcloud'] = generate_wordcloud(negative_word_freq)
     initial_data['neutralWordcloud'] = generate_wordcloud(neutral_word_freq)
-    initial_data['confusion_matrix'] = confusion_matrix_data
-    initial_data['accuracy_0'] = str(round(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100, 1)) + "%"
-    initial_data['accuracy_1'] = str(round(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100, 1)) + "%"
-    initial_data['accuracy_2'] = str(round(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100, 1)) + "%"
+
+
+    initial_data['solo_bert_confusion_matrix'] = solo_bert_confusion_matrix_data
+    initial_data['solo_bert_accuracy_0'] = str(round(solo_bert_confusion_matrix_data[0][0]/(solo_bert_confusion_matrix_data[0][0] + solo_bert_confusion_matrix_data[1][0] + solo_bert_confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    initial_data['solo_bert_accuracy_1'] = str(round(solo_bert_confusion_matrix_data[1][1]/(solo_bert_confusion_matrix_data[0][1] + solo_bert_confusion_matrix_data[1][1] + solo_bert_confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    initial_data['solo_bert_accuracy_2'] = str(round(solo_bert_confusion_matrix_data[2][2]/(solo_bert_confusion_matrix_data[0][2] + solo_bert_confusion_matrix_data[1][2] + solo_bert_confusion_matrix_data[2][2]) * 100, 1)) + "%"
+
+    initial_data['svm_bert_confusion_matrix'] = svm_bert_confusion_matrix_data
+    initial_data['svm_bert_accuracy_0'] = str(round(svm_bert_confusion_matrix_data[0][0]/(svm_bert_confusion_matrix_data[0][0] + svm_bert_confusion_matrix_data[1][0] + svm_bert_confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    initial_data['svm_bert_accuracy_1'] = str(round(svm_bert_confusion_matrix_data[1][1]/(svm_bert_confusion_matrix_data[0][1] + svm_bert_confusion_matrix_data[1][1] + svm_bert_confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    initial_data['svm_bert_accuracy_2'] = str(round(svm_bert_confusion_matrix_data[2][2]/(svm_bert_confusion_matrix_data[0][2] + svm_bert_confusion_matrix_data[1][2] + svm_bert_confusion_matrix_data[2][2]) * 100, 1)) + "%"
+
+    initial_data['svm_bow_confusion_matrix'] = svm_bow_confusion_matrix_data
+    initial_data['svm_bow_accuracy_0'] = str(round(svm_bow_confusion_matrix_data[0][0]/(svm_bow_confusion_matrix_data[0][0] + svm_bow_confusion_matrix_data[1][0] + svm_bow_confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    initial_data['svm_bow_accuracy_1'] = str(round(svm_bow_confusion_matrix_data[1][1]/(svm_bow_confusion_matrix_data[0][1] + svm_bow_confusion_matrix_data[1][1] + svm_bow_confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    initial_data['svm_bow_accuracy_2'] = str(round(svm_bow_confusion_matrix_data[2][2]/(svm_bow_confusion_matrix_data[0][2] + svm_bow_confusion_matrix_data[1][2] + svm_bow_confusion_matrix_data[2][2]) * 100, 1)) + "%"
+
 
     return render(request, 'index.html', initial_data)
 
 def pie_chart_data(request):
     topic = request.GET.get('topic')
     data_objects = Topic.objects.filter(topic = topic)
-    valuesList = [data.value for data in data_objects]
+    solo_bert_percentages = [data.solo_bert_percent for data in data_objects]
+    svm_bert_percentages = [data.svm_bert_percent for data in data_objects]
+    svm_bow_percentages = [data.svm_bow_percentage for data in data_objects]
     data = {
         'labels' : ["Negative", "Neutral", "Positive"],
-        'data' : valuesList[0]
+        'solo_bert_data' : solo_bert_percentages[0],
+        'svm_bert_data' : svm_bert_percentages[0],
+        'svm_bow_data' : svm_bow_percentages[0]
     }
     return(JsonResponse(data))
 
@@ -120,14 +147,30 @@ def regenerate_confusion_matrix(request):
     topic = request.GET.get('topic')
     data_objects = Topic.objects.filter(topic = topic)
 
-    actual_data_list = data_objects.values_list('actual_data', flat=True)
-    predicted_data_list = data_objects.values_list('predicted_data', flat=True)
+    solo_bert_actual_data_list = data_objects.values_list('solo_bert_actual_data', flat=True)
+    solo_bert_predicted_data_list = data_objects.values_list('solo_bert_predicted_data', flat=True)
 
-    confusion_matrix_data = generate_confusion_matrix(actual_data_list[0], predicted_data_list[0]).tolist()
-    cm_data['confusion_matrix_data'] = confusion_matrix_data
-    cm_data['accuracy_0'] = str(round(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100, 1)) + "%"
-    cm_data['accuracy_1'] = str(round(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100, 1)) + "%"
-    cm_data['accuracy_2'] = str(round(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100, 1)) + "%"
+    solo_bert_confusion_matrix_data = generate_confusion_matrix(solo_bert_actual_data_list[0], solo_bert_predicted_data_list[0]).tolist()
+    cm_data['solo_bert_confusion_matrix_data'] = solo_bert_confusion_matrix_data
+    cm_data['solo_bert_accuracy_0'] = str(round(solo_bert_confusion_matrix_data[0][0]/(solo_bert_confusion_matrix_data[0][0] + solo_bert_confusion_matrix_data[1][0] + solo_bert_confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    cm_data['solo_bert_accuracy_1'] = str(round(solo_bert_confusion_matrix_data[1][1]/(solo_bert_confusion_matrix_data[0][1] + solo_bert_confusion_matrix_data[1][1] + solo_bert_confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    cm_data['solo_bert_accuracy_2'] = str(round(solo_bert_confusion_matrix_data[2][2]/(solo_bert_confusion_matrix_data[0][2] + solo_bert_confusion_matrix_data[1][2] + solo_bert_confusion_matrix_data[2][2]) * 100, 1)) + "%"
+    
+    svm_bert_actual_data_list = data_objects.values_list('svm_bert_actual_data', flat=True)
+    svm_bert_predicted_data_list = data_objects.values_list('svm_bert_predicted_data', flat=True)
+    svm_bert_confusion_matrix_data = generate_confusion_matrix(svm_bert_actual_data_list[0], svm_bert_predicted_data_list[0]).tolist()
+    cm_data['svm_bert_confusion_matrix_data'] = svm_bert_confusion_matrix_data
+    cm_data['svm_bert_accuracy_0'] = str(round(svm_bert_confusion_matrix_data[0][0]/(svm_bert_confusion_matrix_data[0][0] + svm_bert_confusion_matrix_data[1][0] + svm_bert_confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    cm_data['svm_bert_accuracy_1'] = str(round(svm_bert_confusion_matrix_data[1][1]/(svm_bert_confusion_matrix_data[0][1] + svm_bert_confusion_matrix_data[1][1] + svm_bert_confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    cm_data['svm_bert_accuracy_2'] = str(round(svm_bert_confusion_matrix_data[2][2]/(svm_bert_confusion_matrix_data[0][2] + svm_bert_confusion_matrix_data[1][2] + svm_bert_confusion_matrix_data[2][2]) * 100, 1)) + "%"
+
+    svm_bow_actual_data_list = data_objects.values_list('svm_bert_actual_data', flat=True)
+    svm_bow_predicted_data_list = data_objects.values_list('svm_bert_predicted_data', flat=True)
+    svm_bow_confusion_matrix_data = generate_confusion_matrix(svm_bow_actual_data_list[0], svm_bow_predicted_data_list[0]).tolist()
+    cm_data['svm_bow_confusion_matrix_data'] = svm_bow_confusion_matrix_data
+    cm_data['svm_bow_accuracy_0'] = str(round(svm_bow_confusion_matrix_data[0][0]/(svm_bow_confusion_matrix_data[0][0] + svm_bow_confusion_matrix_data[1][0] + svm_bow_confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    cm_data['svm_bow_accuracy_1'] = str(round(svm_bow_confusion_matrix_data[1][1]/(svm_bow_confusion_matrix_data[0][1] + svm_bow_confusion_matrix_data[1][1] + svm_bow_confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    cm_data['svm_bow_accuracy_2'] = str(round(svm_bow_confusion_matrix_data[2][2]/(svm_bow_confusion_matrix_data[0][2] + svm_bow_confusion_matrix_data[1][2] + svm_bow_confusion_matrix_data[2][2]) * 100, 1)) + "%"
     return(JsonResponse(cm_data, safe=False))
 
 def generate_confusion_matrix(y_actual, y_pred):
