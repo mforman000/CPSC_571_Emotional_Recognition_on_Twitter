@@ -6,7 +6,9 @@ class Topic(models.Model):
     positiveWords = models.JSONField()
     negativeWords = models.JSONField()
     neutralWords = models.JSONField()
-    
+    predicted_data = models.JSONField()
+    actual_data = models.JSONField()
+
 
     def __str__(self):
         return self.topic
