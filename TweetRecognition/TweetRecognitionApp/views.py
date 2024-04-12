@@ -54,9 +54,9 @@ def index(request):
     initial_data['negativeWordcloud'] = generate_wordcloud(negative_word_freq)
     initial_data['neutralWordcloud'] = generate_wordcloud(neutral_word_freq)
     initial_data['confusion_matrix'] = confusion_matrix_data
-    initial_data['accuracy_0'] = str(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100) + "%"
-    initial_data['accuracy_1'] = str(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100) + "%"
-    initial_data['accuracy_2'] = str(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100) + "%"
+    initial_data['accuracy_0'] = str(round(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    initial_data['accuracy_1'] = str(round(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    initial_data['accuracy_2'] = str(round(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100, 1)) + "%"
 
     return render(request, 'index.html', initial_data)
 
@@ -125,9 +125,9 @@ def regenerate_confusion_matrix(request):
 
     confusion_matrix_data = generate_confusion_matrix(actual_data_list[0], predicted_data_list[0]).tolist()
     cm_data['confusion_matrix_data'] = confusion_matrix_data
-    cm_data['accuracy_0'] = str(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100) + "%"
-    cm_data['accuracy_1'] = str(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100) + "%"
-    cm_data['accuracy_2'] = str(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100) + "%"
+    cm_data['accuracy_0'] = str(round(confusion_matrix_data[0][0]/(confusion_matrix_data[0][0] + confusion_matrix_data[1][0] + confusion_matrix_data[2][0]) * 100, 1)) + "%"
+    cm_data['accuracy_1'] = str(round(confusion_matrix_data[1][1]/(confusion_matrix_data[0][1] + confusion_matrix_data[1][1] + confusion_matrix_data[2][1]) * 100, 1)) + "%"
+    cm_data['accuracy_2'] = str(round(confusion_matrix_data[2][2]/(confusion_matrix_data[0][2] + confusion_matrix_data[1][2] + confusion_matrix_data[2][2]) * 100, 1)) + "%"
     return(JsonResponse(cm_data, safe=False))
 
 def generate_confusion_matrix(y_actual, y_pred):
