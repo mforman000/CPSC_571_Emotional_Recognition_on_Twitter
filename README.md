@@ -25,7 +25,13 @@ source django-env/bin/activate
 
 Now you can try installing. 
 
-To run the server you must run the following command:
+If these are already installed or once you have already installed the above libraries please navigate into the TweetRecognition directory.
+
+```
+cd TweetRecognition
+```
+
+Now you can run the server using the following command:
 
 ```
 python manage.py runserver
