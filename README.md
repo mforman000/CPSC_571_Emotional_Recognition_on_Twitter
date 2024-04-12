@@ -15,7 +15,8 @@ In order to run our program, ensure oyu have Django installed on your system. To
 ```
 pip install django
 ```
-If you are still running into issues you may need to install load a django-env into this folder. To do so you can run
+If you are still running into issues you may need to install load a django-env into this folder. To do so you can run:
+
 '''
 python -m venv django-env
 
