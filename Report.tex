@@ -50,43 +50,58 @@ With this new knowledge, products and services could theoretically be changed to
 
 \end{abstract}
 
-\begin{IEEEkeywords}
-Insert terms here
-\end{IEEEkeywords}
+\section{Introduction}
+Twitter (now X) is one of the most popular forms of social media on the planet.
+With the immense amount of traffic it receives it can be thought of as a great tool to monitor how individuals feel about certain topics.
+With the help of AI and Machine Learning Models, it is possible to decipher between the sentiment behind a given tweet.
+When this done on a mass scale it can be used to figure out how the public feels on a given topic.
+However, one problem with this being done on a mass scale is the time it takes to compute and train the models.
+The model used in this report is the BERTweet model.
+While this model is known to be very accurate the computing power necessary to run this model is very high.
+As a result of this model on a database of tweets can take quite some time unless one has an incredibly powerful computer.
+Therefore, this leaves an opportunity to combine the technology behind this modern model with some quicker existing machine learning algorithms.
+This other machine learning algorithm is the Support Vector Machine (SVM) algorithm.
+This method combined with the embeddings established by the BERTweet model could result in a much quicker analysis of the tweets.
+On top of this, having visualizations of the analysis of the tweets is essential for understanding the data properly.
+Without proper visualizations interpreting the data can be more difficult than necessary. 
+Our proposed solution for this will include testing BERTweet, a hybrid of BERTweet embeddings and SVM as well as Normal SVM. 
+On top of this we will display the results of the calculations on a webpage with several visualizations for the data. 
+With this in mind we hope to cover some gaps in the existing implementations through adapting to lower computing power and displaying the results in a more friendly manner. 
+
 
 \section{Literature Review}
 There are many current studies that have also had intentions to create an algorithm to assign sentiment to tweets.  
 From these studies, the following has been discovered.
 Assigning sentiment should be split up into three categories, positive, neutral, and negative.
 This separation of tweets has been used in several sentiment analysis studies.
-For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in wich there algorithm "establishes whether a particular tweet is supportive, critical, or neutral\cite{b2}."
+For example this was the way tweets were separated in a study by Samah Jailani, Hamzah, Amunuddin, Abidin, and Riza in which there algorithm "establishes whether a particular tweet is supportive, critical, or neutral\cite{b2}."
 Emotion can also be assigned to tweets, these being split up into sections of anger, sadness, joy, fear, and disgust. 
 In a study by Benrouba, and Boudour, IBM's natural language understanding API tool was used to analyze words associated with positive, negative and neutral emotions\cite{b1}.
-This tools assigns values between 0 and 1 for emotions mentioned above per word. 
+This tool assigns values between 0 and 1 for emotions mentioned above per word. 
 From here, tweets were analyzed to calculate distance to these baseline words in an unsupervised fashion in order to identify the sentiment behind it. 
-As well, there was implemenations of this algorithm that focussed on desiphering the sentiment or emotion of a tweet on an individual scale, or on a more mass tweet scale.
-The analysis in bulk was done mainly to understand how the public was percieving a certain topic of interest online. 
+As well, there were implementations of this algorithm that focussed on deciphering the sentiment or emotion of a tweet on an individual scale, or on a more mass tweet scale.
+The analysis in bulk was done mainly to understand how the public was perceiving a certain topic of interest online. 
 Whereas the individual assessment was more focussed on understanding how one person felt in general based on the sentiment behind their tweets. 
-Through analyzing existing papers some pros and cons with exisiting methodologies were established. \newline
+Through analyzing existing papers some pros and cons with existing methodologies were established. \newline
 \newline
 Pros: 
 \begin{itemize}
-    \item Proven accuracy of SVM (Support Vector Machine) algoirthm.
+    \item Proven accuracy of SVM algorithm.
     \item Proven accuracy of BERTweet Self-supervised Algorithm.
 \end{itemize}
 Cons:
 \begin{itemize}
-    \item Much fewer studies in which unsupervised algoirthms were tested in this context.
-    \item There is a lot of overlap between neurtal, and positive and negative key words making it harder to determine sentiment.
+    \item Much fewer studies in which unsupervised algorithms were tested in this context.
+    \item There is a lot of overlap between neutral, and positive and negative key words making it harder to determine sentiment.
     \item Very little in the way of good visualizations for the output of the algorithms.
 \end{itemize}
 
 As mentioned above, Taking an SVM approach was one of the most accurate in terms of supervised algorithms.
-It out performed other algorithms of Sentiment Analysis accross multiple examined studies. 
-An SVM works by indentifying "a hyperplane that distinguishably segregates the data points of differnt classes \cite{b6}." 
+It outperformed other algorithms of Sentiment Analysis across multiple examined studies. 
+An SVM works by identifying "a hyperplane that distinctly segregates the data points of different classes \cite{b6}." 
 What this means is the data is expanded onto a multidimensional plane that is split up by the hyperplane. 
-The hyperplane will have margins that expand to the size of the closest datapoint to it that falls immediately after the hyplane centre. 
-This makes decision making faster and more effiecient. 
+The hyperplane will have margins that expand to the size of the closest data point to it that falls immediately after the hyperplane center. 
+This makes decision-making faster and more efficient. 
 \begin{figure}[t]
     \centerline{\includegraphics[width=0.5\textwidth]{SVMVisualization.png}}
     \caption{Visualization of hyperplane from SVM \cite{b6}.}
@@ -102,9 +117,9 @@ BERT is an example of a self-supervised model.
 What this means is that it uses the data input to train on like a supervised algorithm however the training of the algorithm is done in an unsupervised fashion.
 "The unsupervised problem is transformed into a supervised problem by auto-generating the labels\cite{b9}" for the supervised algorithm.
 In a study performed by Ionut-Alexandru and Stelian a hybrid of a "BERT and SVM Ensemble Model\cite{b8}" was used to detect emotions.
-From this study they found very accurate results from combining the power of BERT and SVM with accuiracies in the 90th percentile.
+From this study they found very accurate results from combining the power of BERT and SVM with accuracies in the 90th percentile.
 From their results, the overall accuracy for their ensemble was 91\% \cite{b8}.
-However their resulsts for BERT were 89\% \cite{b8}, which is very comparible to that of their ensemble.
+However, their results for BERT were 89\% \cite{b8}, which is very comparable to that of their ensemble.
 These results can be seen in Figure 2.
 This leads to the possibility of with different training and potentially more specific topics on tweets better results for BERTweet.
 
@@ -120,7 +135,7 @@ This makes understanding the algorithms decision on what the public feels on a c
 An example of these charts can be seen in Figure 3. 
 As well, in a study by Harshit D. Bhavani, they also created a web application to visualize the data\cite{b3}. 
 However, both of these models have never used BERT or any other self-supervised algorithms with these visualizations.
-This leaves a gap in the existing studies of nciely presented data using algorithms with superior accuracy, that may be able to be filled. 
+This leaves a gap in the existing studies of nicely presented data using algorithms with superior accuracy, that may be able to be filled. 
 
 \begin{figure*}[t]
     \centering
@@ -277,12 +292,12 @@ The combination of these technologies and frameworks will enable the development
 \bibitem{b10} Shrijayan (2022) Sentimental analysis, Kaggle. Available at: \url{ https://www.kaggle.com/datasets/cpluzshrijayan/swiggy-tweet} (Accessed: 23 March 2024).  
 \bibitem{b11} Eight, F. (2019) Twitter us airline sentiment, Kaggle. Available at: \url{https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment} (Accessed: 23 March 2024). 
 \bibitem{b12} Lewis, H. (2020) Getting started with pandas in Python, Getting Started with pandas in Python | UVA Library. Available at: \url{https://library.virginia.edu/data/articles/getting-started-with-pandas-in-python} (Accessed: 23 March 2024). 
-\bibitem{b13} Quoc Nguyen , D.Q.N.,  Vu, T. and Tuan Nguyen., A. (2020) Bertweet, BERTweet. Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/bertweet} (Accessed: 24 March 2024). 
+\bibitem{b13} Quoc Nguyen , D.Q.N.,  Vu, T. and Tuan Nguyen., A. (2020) BERTweet, BERTweet. Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/BERTweet} (Accessed: 24 March 2024). 
 \bibitem{b14} Django Software Foundation, (2024) Django: The Web framework for perfectionists with deadlines, Available at: \url{https://www.djangoproject.com} (Accessed: 25 March 2024)
 \bibitem{b15} Mozilla Contributors, (2024) Introduction to Django, Available at: \url{https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction} (Accessed: 25 March 2024)
 \bibitem{b16} W3Schools, Machine Learning - Confustion Matrix, Available at: \url{https://www.w3schools.com/python/python_ml_confusion_matrix.asp} (Accessed: 23 March 2024)
 \bibitem{b17} Horev, R. (2018) BERT Explained: State of the art language model for NLP, Available at: \url{https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270} (Accessed: 23 March 2024)
-\bibitem{b18} Hugging Face, Bertweet Documentation, Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/bertweet} (Accessed: 23 March 2024)
+\bibitem{b18} Hugging Face, BERTweet Documentation, Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/BERTweet} (Accessed: 23 March 2024)
 \end{thebibliography}
 \vspace{12pt}
 \end{document}
