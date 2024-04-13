@@ -31,7 +31,7 @@
         <canvas id="svm_bow_pie_chart"></canvas>
     </div>
 
-    <div class="canvas-container">
+    <div class="canvas-container" id="word-cloud-container">
         <img id="wordcloud-positive" src="{{ positiveWordcloud }}" alt="Word Cloud">
         <img id="wordcloud-negative" src="{{ negativeWordcloud }}" alt="Word Cloud">
         <img id="wordcloud-neutral" src="{{ neutralWordcloud }}" alt="Word Cloud">
@@ -297,6 +297,17 @@
                 }
             });
         }
+
+        var dropdown = document.getElementById("topics")
+        var div = document.getElementById("word-cloud-container")
+
+        dropdown.addEventListener("change", function(){
+            if (dropdown.value === "Weather"){
+                div.style.display = "none";
+            } else {
+                div.style.display = "block";
+            }
+        });
     </script>
 </body>
 </html>
