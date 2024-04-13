@@ -27,13 +27,16 @@
         <canvas id="solo_bert_pie_chart"></canvas>
         <h2>BerTweet Embeddings + SVM</h2>
         <canvas id="svm_bert_pie_chart"></canvas>
-        <h2>Bag of Words Embeddings + SVM</h2>
+        <h2>Normal SVM</h2>
         <canvas id="svm_bow_pie_chart"></canvas>
     </div>
 
     <div class="canvas-container" id="word-cloud-container">
+        <h2>Most Popular Positive Words</h2>
         <img id="wordcloud-positive" src="{{ positiveWordcloud }}" alt="Word Cloud">
+        <h2>Most Popular Negative Words</h2>
         <img id="wordcloud-negative" src="{{ negativeWordcloud }}" alt="Word Cloud">
+        <h2>Most Popular Neutral Words</h2>
         <img id="wordcloud-neutral" src="{{ neutralWordcloud }}" alt="Word Cloud">
     </div>
     
@@ -100,7 +103,7 @@
                 <td id="svm_bert_confusion_matrix_2accuracy">{{ svm_bert_accuracy_2 }}</td>
             </tr>
         </table>
-        <h2>Bag of Words Embeddings + SVM</h2>
+        <h2>Normal SVM</h2>
         <table>
             <tr>
                 <th></th>
