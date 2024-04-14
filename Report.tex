@@ -54,11 +54,11 @@ With this new knowledge, products and services could theoretically be changed to
 Twitter (now X) is one of the most popular forms of social media on the planet.
 With the immense amount of traffic it receives it can be thought of as a great tool to monitor how individuals feel about certain topics.
 With the help of AI and Machine Learning Models, it is possible to decipher between the sentiment behind a given tweet.
-When this done on a mass scale it can be used to figure out how the public feels on a given topic.
+When this is done on a mass scale it can be used to figure out how the public feels on a given topic.
 However, one problem with this being done on a mass scale is the time it takes to compute and train the models.
 The model used in this report is the BERTweet model.
-While this model is known to be very accurate the computing power necessary to run this model is very high.
-As a result of this model on a database of tweets can take quite some time unless one has an incredibly powerful computer.
+While this model is known to be very accurate, the computing power necessary to run this model is very high.
+As a result of this, running this model on a database of tweets can take quite some time unless one has an incredibly powerful computer.
 Therefore, this leaves an opportunity to combine the technology behind this modern model with some quicker existing machine learning algorithms.
 This other machine learning algorithm is the Support Vector Machine (SVM) algorithm.
 This method combined with the embeddings established by the BERTweet model could result in a much quicker analysis of the tweets.
@@ -92,7 +92,7 @@ Pros:
 Cons:
 \begin{itemize}
     \item Much fewer studies in which unsupervised algorithms were tested in this context.
-    \item There is a lot of overlap between neutral, and positive and negative key words making it harder to determine sentiment.
+    \item There is a lot of overlap between neutral, positive and negative key words making it harder to determine sentiment.
     \item Very little in the way of good visualizations for the output of the algorithms.
 \end{itemize}
 
@@ -147,7 +147,7 @@ This leaves a gap in the existing studies of nicely presented data using algorit
 
 
 
-\section{Proposed Methodology}
+\section{Methodology}
 
 Our methodology attempts to explore self-supervised models further and at the same time, compare performance against supervised learning models. Based on our analysis of various academic papers we found that SVM was one of the most accurate models and decided to compare this to the BERTweet model for emotional recognition. 
 
@@ -160,7 +160,7 @@ Our goal is to see how well our model could perform with datasets of different s
 
 \subsection{Data Preprocessing}
 The next step is to process the data. 
-In the preprocessing step, we assign target values to each tweet. This value would be assign "0" if the tweet is negative, "1" if it is neutral, and "2" if it is positive.  Where necessary, we also remove stopwords from our dataset and remove any links which are not necessary for our model. We also tokenize our text, which splits the text into smaller components. This is important so that our model can focus solely on the textual information presented. We then generate embeddings for each tweet in order to get a numerical representation to feed into our models. In our next step, we split the using 80\%  for training and 20\% for validation.
+In the preprocessing step, we assign target values to each tweet. This value would be assigned "0" if the tweet is negative, "1" if it is neutral, and "2" if it is positive.  Where necessary, we also remove stopwords from our dataset and remove any links which are not necessary for our model. We also tokenize our text, which splits the text into smaller components. This is important so that our model can focus solely on the textual information presented. We then generate embeddings for each tweet in order to get a numerical representation to feed into our models. In our next step, we split the data using 80\%  for training and 20\% for validation.
 
 
 \subsection{Training/Finetuning}
@@ -268,7 +268,7 @@ In this section, we delve deeper into the technologies selected for our sentimen
 
     \item \textbf{Google Colab}: As our models require heavy computational power, we utilized Google Colab's runtime to execute our code. Google colab allows us to run Jupyter notebooks in a cloud hosted environment and allows us to perform heavy machine learning tasks.
     
-    \item \textbf{Python}: As our primary programming language, Python's flexibility and comprehensive ecosystem are pivotal. It will serve multiple roles: data preprocessing, integration with machine learning models to refine or retrain BERTweet for enhanced accuracy, and driving our backend development with APIs for fetching analysis results, user management, and processed data delivery, leveraging the extensive capabilities of the Django framework. Python serves as the glue between the data and the sentiment analysis models. With libraries such as TensorFlow, we can further refine or even retrain models like BERTweet based on specific needs or to improve accuracy\cite{b23}\cite{24}.
+    \item \textbf{Python}: As our primary programming language, Python's flexibility and comprehensive ecosystem are pivotal. It will serve multiple roles: data preprocessing, integration with machine learning models to refine or retrain BERTweet for enhanced accuracy, and driving our backend development with APIs for fetching analysis results, user management, and processed data delivery, leveraging the extensive capabilities of the Django framework. Python serves as the glue between the data and the sentiment analysis models. With libraries such as TensorFlow, we can further refine or even retrain models like BERTweet based on specific needs or to improve accuracy\cite{b23}\cite{b24}.
     
     \item \textbf{Django Framework}: The Django Framework is selected for its robustness, scalability, and ease of integration with Python's data science and machine learning libraries. It facilitates the rapid development of secure and maintainable web applications, providing out-of-the-box support for common web development tasks. This includes a powerful admin interface for easy data model management, making it simpler to handle large volumes of traffic and data efficiently. Django's security features protect our application from common vulnerabilities, ensuring a secure user experience. With Django, our backend is not only highly scalable but also adaptable, allowing our application to grow seamlessly as user demands and technologies evolve\cite{b14}.
     
@@ -279,20 +279,20 @@ In this section, we delve deeper into the technologies selected for our sentimen
 The combination of these technologies and frameworks enabled  the development of a comprehensive web application that leverages advanced sentiment analysis to provide valuable insights into various datasets, thereby meeting our project objectives.
 
 \section{Results}
-Our results proved to be quite meaningful and relevant. Our analysis focuses mostly on the Airline U.S Sentiment dataset as that contained a robust amount of tweets for analysis. The weather dataset was for testing model performance on smaller datasets. Below is a pie chart showing the distribution of positive, negative and neutral tweets. In addition to word clouds of positive, negative, and neutral words present in our data.
+Our results proved to be quite meaningful and relevant. Our analysis focuses mostly on the Airline U.S Sentiment dataset as that contained a robust amount of tweets for analysis. The weather dataset was for testing the model's performance on smaller datasets. Below in Figure 6 is a pie chart showing the distribution of positive, negative and neutral tweets. In addition, we implemented word clouds of positive, negative, and neutral words present in our data similar to Figure 4.
 \begin{figure}[h!]
     \includegraphics[width=0.5\textwidth]{pie_chart.png}
     \caption{Pie chart from developed webpage.}
 \end{figure}
 
-As you can see from figure 6, our data consists of predominantly negative tweets. After running our model on the validation set, the following are the results we achieved for each model.
+As you can see from Figure 6, our data consists of predominantly negative tweets. After running our model on the validation set we received results for each model, these results are found in Figure 7.
 
 \begin{figure}[b!]
     \includegraphics[width=0.5\textwidth]{results.png}
     \caption{Confusion Matrix plus data from developed webpage for airlines database.}
 \end{figure}
 
-Looking at the data in Figure 7 it is evident that the SVM model using BOW performed significantly worse than the other 2 models. This is expected because this dataset of over 14000 tweets is not enough to train the SVM model with good results. 
+Looking at the data in Figure 7 it is evident that the SVM model using BOW (Normal SVM) performed significantly worse than the other 2 models. This is expected because this dataset of over 14000 tweets is not enough to train the SVM model with good results. 
 
 The best performing model overall was the BERTweet model which was also expected because this model was pretrained on millions of tweets and is expected to perform better for this dataset. One thing which was unexpected was that the SVM model that used BERTTweet embeddings had results which compared well to the BERTweet model. This was very impressive and unexpected. Using BERTweet for embeddings proved that we can achieve better results due to the fact that BERTweet provides contextual embeddings which are more accurate representations of tweets, to the SVM model. The accuracy of this model was only 1\% worse for this dataset. In addition, its precision on the neutral class was better than the BERTweet model indicating that it performs more accurate predictions on neutral tweets than the BERTweet classification model. Its recall on the negative class performed better as well showing that out of all the negative tweets, this SVM model classified more of these negative than the first BERTweet model.
 Although the BERTweet model metrics were better overall, the SVM model is still competitive due to the fact that it is much less computationally expensive.  The BERTweet model took almost 17 minutes to train while the SVM model using BERTweet embeddings used only 5 minutes to generate embeddings and 32 seconds to train. Overall our objective was accomplished in that we were able to produce better visualizations and come up with a methodology that was more suitable for situations where computational resources are limited. In addition to this test, we also applied this methodology to a smaller dataset, to see what would happen in cases where data is limited. We used a dataset of 1000 tweets on weather data to test this. The results can be found in Figure 8.
