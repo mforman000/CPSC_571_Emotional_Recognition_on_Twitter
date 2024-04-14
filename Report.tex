@@ -173,9 +173,9 @@ We believe this is the appropriate model to use because we intend to test the ab
 
 
 
-Our second model used SVM to classify tweets. This model has been widely used and proven to achieve very accurate results. Prior to training this model we used Bag of Words model to generate embeddings to feed into the SVM classifier.
+Our second model used SVM to classify tweets. This model has been widely used and proven to achieve very accurate results. Prior to training this model we used Bag of Words model to generate embeddings to feed into the SVM classifier. The Bag of Words model is a way of representing text numerically by using a vacbulary of known words and measuring presence of known words to create a vector for a piece of text\cite{b19}.
 
-Our third model used SVM to classify tweets however, we used BERTweet's model to generate embeddings prior to training this model. This is because we wanted to test whether it would be beneficial for us to use capabilities of both transformer models and supervised learning models to achieve good results.
+Our third model used SVM to classify tweets however, we used BERTweet's model to generate embeddings prior to training this model. This is because we wanted to test whether it would be beneficial for us to use capabilities of both transformer models and supervised learning models to achieve good results. The BERT model is known for generating contextual embeddings which could potentially improve model accuracy\cite{b17}. 
 
 
 \subsection{Classification}
@@ -196,11 +196,8 @@ An example of this can be shown below.
  We will also add additional visualizations which we plan to show in the next step which is evaluating performance.
  In order to display this information to the user we will be implementing a web application using the Django Framework in python. 
  "Django is a high-level Python web framework that encourages rapid development \cite{b14}."
- Given our shorter time frame, we believe that this framerwork will be able to give us the best product within the fastest timeframe.
+ Given our shorter time frame, we believe that this framework will be able to give us the best product within the fastest time frame.
  This is due to the fact that Django is consistent in their design principles and have lots of up-to-date documentation \cite{b15}. 
-
-
-
 
 
 \subsection{Evaluation of Performance}
@@ -284,7 +281,7 @@ The combination of these technologies and frameworks enabled  the development of
 \section{Results}
 Our results proved to be quite meaningful and relevant. Our analysis focuses mostly on the Airline U.S Sentiment dataset as that contained a robust amount of tweets for analysis. The weather dataset was for testing model performance on smaller datasets. Below is a pie chart showing the distribution of positive, negative and neutral tweets. In addition to word clouds of positive, negative, and neutral words present in our data.
 
-/* insert images here */
+/* insert images here (word clouds and pie chart for Airline Dataset) */
 
 As you can see, our data consists of predominantly negative tweets. After running our model on the validation set, the following are the results we achieved for each model.
 
@@ -293,10 +290,10 @@ As you can see, our data consists of predominantly negative tweets. After runnin
 
 Looking at the data it is evident that the SVM model using BOW performed significantly worse than the other 2 models. This is expected because this dataset of over 14000 tweets is not enough to train the SVM model with good results. 
 
-The best performing model overall was the BERTweet model which was also expected because this model was pretrained on millions of tweets and is expected to perform better for this dataset. One thing which was unexpected was that the SVM model that used BERTTweet embeddings had results which compared to the BERTweet model. This was very impressive and unexpected. Using BERTweet for embeddings proved that we can achieve better results. This is due to the fact that BERTweet provides contextual embeddings which provide more accurate contextual information to the SVM model. The accuracy of this model was only 1\% worse for this dataset. In addition, its precision on the neutral class was better than the BERTweet model indicating that it performs more accurate predictions on neutral tweets than the BERTweet classification model. Its recall on the negative class performed better as well showing that out of all the negative tweets, this SVM model classified more of these negative than the first BERTweet model.
-Although the BERTweet model metrics were better overall, the SVM model is still competitive due to the fact that it is much less computationally expensive.  The BERTweet model took almost 17mins to train while the SVM model using BERTweet embeddings used only 5 minutes to generate embeddings and 32 seconds to train. Overall our objective was accomplished in that we were able to produce better visualizations and come up with a methodology that was more suitable for situations where computational resources are limited. In addition to this test, we also applied this methodology to a smaller dataset, to see what would happen in cases where data is limited. We used a dataset of 1000 tweets on weather data to test this. The following were the results:
+The best performing model overall was the BERTweet model which was also expected because this model was pretrained on millions of tweets and is expected to perform better for this dataset. One thing which was unexpected was that the SVM model that used BERTTweet embeddings had results which compared well to the BERTweet model. This was very impressive and unexpected. Using BERTweet for embeddings proved that we can achieve better results due to the fact that BERTweet provides contextual embeddings which are more accurate representations of tweets, to the SVM model. The accuracy of this model was only 1\% worse for this dataset. In addition, its precision on the neutral class was better than the BERTweet model indicating that it performs more accurate predictions on neutral tweets than the BERTweet classification model. Its recall on the negative class performed better as well showing that out of all the negative tweets, this SVM model classified more of these negative than the first BERTweet model.
+Although the BERTweet model metrics were better overall, the SVM model is still competitive due to the fact that it is much less computationally expensive.  The BERTweet model took almost 17 minutes to train while the SVM model using BERTweet embeddings used only 5 minutes to generate embeddings and 32 seconds to train. Overall our objective was accomplished in that we were able to produce better visualizations and come up with a methodology that was more suitable for situations where computational resources are limited. In addition to this test, we also applied this methodology to a smaller dataset, to see what would happen in cases where data is limited. We used a dataset of 1000 tweets on weather data to test this. The following were the results:
 
-/*included accuracy precision and recall for models as well*/
+/*included accuracy precision and recall for all models on we*/
 
 According to these results, we realized that BERTweet significantly outperforms the other two models however, there are a few metrics in which BERTweet embeddings + SVM does slightly better. The recall for the negative class and precision for positive class for BERTweet embeddings + SVM is better however, these metrics dont matter considering the fact that it is outperformed by the BERTweet model in almost every category. Our suggestion is to use BERTweet on data that is limited as this model has already been pretrained on a large corpus of tweets and doesnt require as much finetuning. 
 
@@ -320,6 +317,8 @@ According to these results, we realized that BERTweet significantly outperforms 
 \bibitem{b16} W3Schools, Machine Learning - Confustion Matrix, Available at: \url{https://www.w3schools.com/python/python_ml_confusion_matrix.asp} (Accessed: 23 March 2024)
 \bibitem{b17} Horev, R. (2018) BERT Explained: State of the art language model for NLP, Available at: \url{https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270} (Accessed: 23 March 2024)
 \bibitem{b18} Hugging Face, BERTweet Documentation, Available at: \url{https://huggingface.co/docs/transformers/en/model_doc/BERTweet} (Accessed: 23 March 2024)
+
+\bibitem{b19} A gentle introduction to the Bag of Words Model, Available at: \url{https://machinelearningmastery.com/gentle-introduction-bag-words-model/} (Accessed: 23 March 2024)
 \end{thebibliography}
 \vspace{12pt}
 \end{document}
