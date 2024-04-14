@@ -283,20 +283,27 @@ The combination of these technologies and frameworks enabled  the development of
 
 \section{Results}
 Our results proved to be quite meaningful and relevant. Our analysis focuses mostly on the Airline U.S Sentiment dataset as that contained a robust amount of tweets for analysis. The weather dataset was for testing model performance on smaller datasets. Below is a pie chart showing the distribution of positive, negative and neutral tweets. In addition to word clouds of positive, negative, and neutral words present in our data.
+\begin{figure}[h!]
+    \includegraphics[width=0.5\textwidth]{pie_chart.png}
+    \caption{Pie chart from developed webpage.}
+\end{figure}
 
-/* insert images here */
+As you can see from figure 6, our data consists of predominantly negative tweets. After running our model on the validation set, the following are the results we achieved for each model.
 
-As you can see, our data consists of predominantly negative tweets. After running our model on the validation set, the following are the results we achieved for each model.
+\begin{figure}[b!]
+    \includegraphics[width=0.5\textwidth]{results.png}
+    \caption{Confusion Matrix plus data from developed webpage for airlines database.}
+\end{figure}
 
-/*include confusion matrices here for all models*/
-/*included accuracy precision and recall for models as well*/
-
-Looking at the data it is evident that the SVM model using BOW performed significantly worse than the other 2 models. This is expected because this dataset of over 14000 tweets is not enough to train the SVM model with good results. 
+Looking at the data in Figure 7 it is evident that the SVM model using BOW performed significantly worse than the other 2 models. This is expected because this dataset of over 14000 tweets is not enough to train the SVM model with good results. 
 
 The best performing model overall was the BERTweet model which was also expected because this model was pretrained on millions of tweets and is expected to perform better for this dataset. One thing which was unexpected was that the SVM model that used BERTTweet embeddings had results which compared to the BERTweet model. This was very impressive and unexpected. Using BERTweet for embeddings proved that we can achieve better results. This is due to the fact that BERTweet provides contextual embeddings which provide more accurate contextual information to the SVM model. The accuracy of this model was only 1\% worse for this dataset. In addition, its precision on the neutral class was better than the BERTweet model indicating that it performs more accurate predictions on neutral tweets than the BERTweet classification model. Its recall on the negative class performed better as well showing that out of all the negative tweets, this SVM model classified more of these negative than the first BERTweet model.
-Although the BERTweet model metrics were better overall, the SVM model is still competitive due to the fact that it is much less computationally expensive.  The BERTweet model took almost 17mins to train while the SVM model using BERTweet embeddings used only 5 minutes to generate embeddings and 32 seconds to train. Overall our objective was accomplished in that we were able to produce better visualizations and come up with a methodology that was more suitable for situations where computational resources are limited. In addition to this test, we also applied this methodology to a smaller dataset, to see what would happen in cases where data is limited. We used a dataset of 1000 tweets on weather data to test this. The following were the results:
+Although the BERTweet model metrics were better overall, the SVM model is still competitive due to the fact that it is much less computationally expensive.  The BERTweet model took almost 17mins to train while the SVM model using BERTweet embeddings used only 5 minutes to generate embeddings and 32 seconds to train. Overall our objective was accomplished in that we were able to produce better visualizations and come up with a methodology that was more suitable for situations where computational resources are limited. In addition to this test, we also applied this methodology to a smaller dataset, to see what would happen in cases where data is limited. We used a dataset of 1000 tweets on weather data to test this. The results can be found in Figure 8.
 
-/*included accuracy precision and recall for models as well*/
+\begin{figure}[b!]
+    \includegraphics[width=0.5\textwidth]{weather_results.png}
+    \caption{Confusion Matrix plus data from developed webpage for weather database.}
+\end{figure}
 
 According to these results, we realized that BERTweet significantly outperforms the other two models however, there are a few metrics in which BERTweet embeddings + SVM does slightly better. The recall for the negative class and precision for positive class for BERTweet embeddings + SVM is better however, these metrics dont matter considering the fact that it is outperformed by the BERTweet model in almost every category. Our suggestion is to use BERTweet on data that is limited as this model has already been pretrained on a large corpus of tweets and doesnt require as much finetuning. 
 
