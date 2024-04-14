@@ -48,7 +48,7 @@
                 <th>Predicted Negative</th>
                 <th>Predicted Neutral</th>
                 <th>Predicted Positive</th>
-                <th>Accuracy</th>
+                <th>Recall</th>
             </tr>
             <tr>
                 <th>Actual Negative</th>
@@ -71,6 +71,28 @@
                 <td id="solo_bert_confusion_matrix_22">{{ solo_bert_confusion_matrix.2.2 }}</td>
                 <td id="solo_bert_confusion_matrix_2accuracy">{{ solo_bert_accuracy_2 }}</td>
             </tr>
+            <tr>
+                <th>Precision</th>
+                <td id="solo_bert_precision_negative"> {{ solo_bert_precision_negative }}</td>
+                <td id="solo_bert_precision_neutral"> {{ solo_bert_precision_neutral }}</td>
+                <td id="solo_bert_precision_positive"> {{ solo_bert_precision_positive }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>F1-Score</th>
+                <td id="solo_bert_f1_score_negative"> {{ solo_bert_f1_score_negative }}</td>
+                <td id="solo_bert_f1_score_neutral"> {{ solo_bert_f1_score_neutral }}</td>
+                <td id="solo_bert_f1_score_positive"> {{ solo_bert_f1_score_positive }}</td>
+                <td></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <td id="solo_bert_accuracy"> {{ solo_bert_accuracy }}</td>
+            </tr>
         </table>
         <h2>BerTweet Embeddings + SVM</h2>
         <table>
@@ -79,7 +101,7 @@
                 <th>Predicted Negative</th>
                 <th>Predicted Neutral</th>
                 <th>Predicted Positive</th>
-                <th>Accuracy</th>
+                <th>Recall</th>
             </tr>
             <tr>
                 <th>Actual Negative</th>
@@ -102,6 +124,28 @@
                 <td id="svm_bert_confusion_matrix_22">{{ svm_bert_confusion_matrix.2.2 }}</td>
                 <td id="svm_bert_confusion_matrix_2accuracy">{{ svm_bert_accuracy_2 }}</td>
             </tr>
+            <tr>
+                <th>Precision</th>
+                <td id="svm_bert_precision_negative"> {{ svm_bert_precision_negative }}</td>
+                <td id="svm_bert_precision_neutral"> {{ svm_bert_precision_neutral }}</td>
+                <td id="svm_bert_precision_positive"> {{ svm_bert_precision_positive }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>F1-Score</th>
+                <td id="svm_bert_f1_score_negative"> {{ svm_bert_f1_score_negative }}</td>
+                <td id="svm_bert_f1_score_neutral"> {{ svm_bert_f1_score_neutral }}</td>
+                <td id="svm_bert_f1_score_positive"> {{ svm_bert_f1_score_positive }}</td>
+                <td></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <td id="svm_bert_accuracy"> {{ svm_bert_accuracy }}</td>
+            </tr>
         </table>
         <h2>Normal SVM</h2>
         <table>
@@ -110,7 +154,7 @@
                 <th>Predicted Negative</th>
                 <th>Predicted Neutral</th>
                 <th>Predicted Positive</th>
-                <th>Accuracy</th>
+                <th>Recall</th>
             </tr>
             <tr>
                 <th>Actual Negative</th>
@@ -132,6 +176,28 @@
                 <td id="svm_bow_confusion_matrix_21">{{ svm_bow_confusion_matrix.2.1 }}</td>
                 <td id="svm_bow_confusion_matrix_22">{{ svm_bow_confusion_matrix.2.2 }}</td>
                 <td id="svm_bow_confusion_matrix_2accuracy">{{ svm_bow_accuracy_2 }}</td>
+            </tr>
+            <tr>
+                <th>Precision</th>
+                <td id="svm_bow_precision_negative"> {{ svm_bow_precision_negative }}</td>
+                <td id="svm_bow_precision_neutral"> {{ svm_bow_precision_neutral }}</td>
+                <td id="svm_bow_precision_positive"> {{ svm_bow_precision_positive }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>F1-Score</th>
+                <td id="svm_bow_f1_score_negative"> {{ svm_bow_f1_score_negative }}</td>
+                <td id="svm_bow_f1_score_neutral"> {{ svm_bow_f1_score_neutral }}</td>
+                <td id="svm_bow_f1_score_positive"> {{ svm_bow_f1_score_positive }}</td>
+                <td></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <td id="svm_bow_accuracy"> {{ svm_bow_accuracy }}</td>
             </tr>
         </table>
     </div>
@@ -190,6 +256,14 @@
                         $('#solo_bert_confusion_matrix_21').text(data.solo_bert_confusion_matrix_data[2][1]);
                         $('#solo_bert_confusion_matrix_22').text(data.solo_bert_confusion_matrix_data[2][2]);
 
+                        $('#solo_bert_accuracy').text(data.solo_bert_accuracy);
+                        $('#solo_bert_precision_negative').text(data.solo_bert_precision_negative);
+                        $('#solo_bert_precision_neutral').text(data.solo_bert_precision_neutral);
+                        $('#solo_bert_precision_positive').text(data.solo_bert_precision_positive);
+                        $('#solo_bert_f1_score_negative').text(data.solo_bert_f1_score_negative);
+                        $('#solo_bert_f1_score_neutral').text(data.solo_bert_f1_score_neutral);
+                        $('#solo_bert_f1_score_positive').text(data.solo_bert_f1_score_positive);
+
                         $('#solo_bert_confusion_matrix_0accuracy').text(data.solo_bert_accuracy_0);
                         $('#solo_bert_confusion_matrix_1accuracy').text(data.solo_bert_accuracy_1);
                         $('#solo_bert_confusion_matrix_2accuracy').text(data.solo_bert_accuracy_2);
@@ -204,6 +278,14 @@
                         $('#svm_bert_confusion_matrix_21').text(data.svm_bert_confusion_matrix_data[2][1]);
                         $('#svm_bert_confusion_matrix_22').text(data.svm_bert_confusion_matrix_data[2][2]);
 
+                        $('#svm_bert_accuracy').text(data.svm_bert_accuracy);
+                        $('#svm_bert_precision_negative').text(data.svm_bert_precision_negative);
+                        $('#svm_bert_precision_neutral').text(data.svm_bert_precision_neutral);
+                        $('#svm_bert_precision_positive').text(data.svm_bert_precision_positive);
+                        $('#svm_bert_f1_score_negative').text(data.svm_bert_f1_score_negative);
+                        $('#svm_bert_f1_score_neutral').text(data.svm_bert_f1_score_neutral);
+                        $('#svm_bert_f1_score_positive').text(data.svm_bert_f1_score_positive);
+
                         $('#svm_bert_confusion_matrix_0accuracy').text(data.svm_bert_accuracy_0);
                         $('#svm_bert_confusion_matrix_1accuracy').text(data.svm_bert_accuracy_1);
                         $('#svm_bert_confusion_matrix_2accuracy').text(data.svm_bert_accuracy_2);
@@ -217,6 +299,14 @@
                         $('#svm_bow_confusion_matrix_20').text(data.svm_bow_confusion_matrix_data[2][0]);
                         $('#svm_bow_confusion_matrix_21').text(data.svm_bow_confusion_matrix_data[2][1]);
                         $('#svm_bow_confusion_matrix_22').text(data.svm_bow_confusion_matrix_data[2][2]);
+
+                        $('#svm_bow_accuracy').text(data.svm_bow_accuracy);
+                        $('#svm_bow_precision_negative').text(data.svm_bow_precision_negative);
+                        $('#svm_bow_precision_neutral').text(data.svm_bow_precision_neutral);
+                        $('#svm_bow_precision_positive').text(data.svm_bow_precision_positive);
+                        $('#svm_bow_f1_score_negative').text(data.svm_bow_f1_score_negative);
+                        $('#svm_bow_f1_score_neutral').text(data.svm_bow_f1_score_neutral);
+                        $('#svm_bow_f1_score_positive').text(data.svm_bow_f1_score_positive);
 
                         $('#svm_bow_confusion_matrix_0accuracy').text(data.svm_bow_accuracy_0);
                         $('#svm_bow_confusion_matrix_1accuracy').text(data.svm_bow_accuracy_1);
